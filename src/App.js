@@ -1,13 +1,13 @@
-import Header from "./components/header";
-import Banner from "./components/Banner";
-import Footer from "./components/Footer";
+import React from "react";
+
+import GlobalStyle from "./GlobalStyles";
+import Routes from "./routes";
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Banner/>
-      <Footer/>
+      <GlobalStyle />
+      <Routes />
     </div>
   );
 }

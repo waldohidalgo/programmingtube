@@ -1,0 +1,100 @@
+{
+  "videos": [
+    {
+      "id": 1,
+      "titulo": "Curso de PYTHON desde CERO para PRINCIPIANTES",
+      "categoria": "Python",
+      "descripcion": "Curso de Python para principiantes desde cero en el cual se cubre lo fundamental en cuanto a conceptos y se aprende a aplicar tales conceptos vía código escrito en la terminal o editor de modo de tener un feedback inmediato de comprensión",
+      "url": "https://www.youtube.com/watch?v=Kp4Mvapo5kc",
+      "imagen": "https://i3.ytimg.com/vi/Kp4Mvapo5kc/maxresdefault.jpg"
+    },
+    {
+      "id": 2,
+      "titulo": "Curso Completo de Javascript desde Cero",
+      "categoria": "JavaScript",
+      "descripcion": "Curso de JavaScript muy completo en el cual se aborda lo fundamental en relación a conceptos y su aplicación inmediata escribiendo código en un editor o terminal de modo de tener un feedback inmediato de aprendizaje",
+      "url": "https://www.youtube.com/watch?v=Eh-s-n_6zNQ",
+      "imagen": "https://i3.ytimg.com/vi/Eh-s-n_6zNQ/maxresdefault.jpg"
+    },
+    {
+      "id": 3,
+      "titulo": "Aprende Node.js y Express - Curso desde Cero",
+      "categoria": "JavaScript",
+      "descripcion": "Curso de Node.js y Express.js en el cual se aborda lo fundamental en el lado del backend o servidor",
+      "url": "https://www.youtube.com/watch?v=1hpc70_OoAg",
+      "imagen": "https://i3.ytimg.com/vi/1hpc70_OoAg/maxresdefault.jpg"
+    },
+    {
+      "id": 4,
+      "titulo": "REACT JS desde cero | Curso tutorial completo",
+      "categoria": "JavaScript",
+      "descripcion": "Curso de la librería React.js en el cual se cubre lo fundamental en relación a conceptos y aplicación inmediata",
+      "url": "https://www.youtube.com/watch?v=ladwC6Lrs-M",
+      "imagen": "https://i3.ytimg.com/vi/ladwC6Lrs-M/maxresdefault.jpg"
+    },
+    {
+      "id": 5,
+      "titulo": "Aprende REACT con 3 proyectos incluidos! +6 horas",
+      "categoria": "JavaScript",
+      "descripcion": "Curso práctico de uso de la librería React.js en el cual se realizan proyectos de diversa dificultad",
+      "url": "https://www.youtube.com/watch?v=0C5yFwOYhAk",
+      "imagen": "https://i3.ytimg.com/vi/0C5yFwOYhAk/maxresdefault.jpg"
+    },
+    {
+      "id": 6,
+      "titulo": "Curso de React [2023]: De cero hasta crear tus primeros componentes con estado",
+      "categoria": "JavaScript",
+      "descripcion": "Curso teorico, practico de React desde un nivel básico a intermedio-básico",
+      "url": "https://www.youtube.com/watch?v=7iobxzd_2wY",
+      "imagen": "https://i3.ytimg.com/vi/7iobxzd_2wY/maxresdefault.jpg"
+    },
+    {
+      "id": 7,
+      "titulo": "All The JavaScript You Need To Know For React",
+      "categoria": "JavaScript",
+      "descripcion": "Curso sobre aspectos esenciales de JavaScript para comprender la librería React.js",
+      "url": "https://www.youtube.com/watch?v=m55PTVUrlnA",
+      "imagen": "https://i3.ytimg.com/vi/m55PTVUrlnA/maxresdefault.jpg"
+    },
+    {
+      "id": 8,
+      "titulo": "Harvard CS50`s Introduction to Programming with Python",
+      "categoria": "Python",
+      "descripcion": "Curso extremadamente completo sobre lo fundamental de Python desde un nivel básico a medio alto.",
+      "url": "https://www.youtube.com/watch?v=nLRL_NcnK-4",
+      "imagen": "https://i3.ytimg.com/vi/nLRL_NcnK-4/maxresdefault.jpg"
+    },
+    {
+      "id": 9,
+      "titulo": "Python As Fast as Possible - Learn Python in ~75 Minutes",
+      "categoria": "Python",
+      "descripcion": "Curso de Python el cual abarca lo fundamental pero de una manera comprimida",
+      "url": "https://www.youtube.com/watch?v=VchuKL44s6E",
+      "imagen": "https://i3.ytimg.com/vi/VchuKL44s6E/maxresdefault.jpg"
+    },
+    {
+      "id": 10,
+      "titulo": "Learn Python With This ONE Project!",
+      "categoria": "Python",
+      "descripcion": "Curso de Python practico en el cual se aprenden o fortalecen conceptos haciendo (hands-on)",
+      "url": "https://www.youtube.com/watch?v=th4OBktqK1I",
+      "imagen": "https://i3.ytimg.com/vi/th4OBktqK1I/maxresdefault.jpg"
+    },
+    {
+      "id": 11,
+      "titulo": "Python Object Oriented Programming (OOP) - For Beginners",
+      "categoria": "Python",
+      "descripcion": "Curso de Python enfocado en la programación orientada a objetos. Dicho paradigma de programación es el predominante hoy en día y dominarlo te abre las puertas de la programación a nivel avanzado",
+      "url": "https://www.youtube.com/watch?v=JeznW_7DlB0",
+      "imagen": "https://i3.ytimg.com/vi/JeznW_7DlB0/maxresdefault.jpg"
+    },
+    {
+      "id": 12,
+      "titulo": "Django, Curso de Django para Principiantes",
+      "categoria": "Python",
+      "descripcion": "Curso del Framework ágil Django de Python desde cero",
+      "url": "https://www.youtube.com/watch?v=T1intZyhXDU",
+      "imagen": "https://i3.ytimg.com/vi/T1intZyhXDU/maxresdefault.jpg"
+    }
+  ]
+}
