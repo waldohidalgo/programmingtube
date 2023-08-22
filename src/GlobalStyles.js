@@ -52,6 +52,17 @@ a {
 
 body{
 	font-family: 'Roboto', sans-serif; 
-}`;
+}
+
+.swal-text {
+  text-align: center;
+}
+
+@font-face {
+    font-family: "Carter";
+    src: url("/public/CarterOne-Regular.ttf") format("truetype");
+  }
+
+`;
 
 export default GlobalStyle;

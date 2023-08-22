@@ -1,24 +1,33 @@
-.header__botonNuevoVideo{
-    padding:1px;
-    cursor: pointer;
-    display:flex;
-    align-items: center;
-    padding: 8px;
-    border-radius: 10px;
-    font-family: 'Roboto', sans-serif;
-    background-color: #2A7AE4;
-    color:#FFF;
+.botonNuevoVideo,
+.botonSaveAddVideo,
+.botonLimpiarAddVideo,
+.botonSaveCategory,
+.botonLimpiarCategoria,
+.botonEditarCategoria {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+  background-color: #2a7ae4;
+  color: #fff;
 }
 
-.header__botonNuevoVideo:hover{
-    background-color: red;
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+.botonNuevoVideo:hover,
+.botonSaveAddVideo:hover,
+.botonLimpiarAddVideo:hover,
+.botonSaveCategory:hover,
+.botonLimpiarCategoria:hover,
+.botonEditarCategoria:hover {
+  background-color: red;
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
-.header__botonNuevoVideo--iconomas{
-    color:black;
-    font-size: 1.1rem;
-    padding-right: 0.5rem;
-    color:white;
+.iconoBoton {
+  color: black;
+  font-size: 1.1rem;
+  padding-right: 0.5rem;
+  color: white;
 }
