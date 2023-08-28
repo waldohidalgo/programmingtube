@@ -2,10 +2,12 @@ import { BsPlusCircleFill } from "react-icons/bs";
 import { AiFillSave } from "react-icons/ai";
 import { MdCleaningServices } from "react-icons/md";
 import { FaPencilAlt } from "react-icons/fa";
+import { ImEye } from "react-icons/im";
+import { FaMagnifyingGlassPlus } from "react-icons/fa6";
 import "./Boton.css";
 
 const Boton = (props) => {
-  const { title, className, icono, onClick } = props;
+  const { title, className, icono, onClick, nombretitulo } = props;
 
   const iconoBoton = (tipoIcono) => {
     if (tipoIcono === "iconoMas") {
@@ -16,6 +18,10 @@ const Boton = (props) => {
       return <MdCleaningServices className="iconoBoton" />;
     } else if (tipoIcono === "iconoEdit") {
       return <FaPencilAlt className="iconoBoton" />;
+    } else if (tipoIcono === "iconoEye") {
+      return <ImEye className="iconoBoton" />;
+    } else if (tipoIcono === "iconoMasCategoria") {
+      return <FaMagnifyingGlassPlus className="iconoBoton" />;
     } else {
       return undefined;
     }
@@ -85,6 +91,32 @@ const Boton = (props) => {
         onClick={onClick}
       >
         {iconoBoton(icono)} {title}
+      </button>
+    );
+  }
+
+  if (className === "botonVerVideo") {
+    return (
+      <button
+        title={`${title} ${nombretitulo}`}
+        className={className}
+        type="button"
+        onClick={onClick}
+      >
+        {iconoBoton(icono)} {title}
+      </button>
+    );
+  }
+
+  if (className === "botonVerFullCategoria") {
+    return (
+      <button
+        title={`${title} ${nombretitulo}`}
+        className={className}
+        type="button"
+        style={{ marginTop: "1rem" }}
+      >
+        {iconoBoton(icono)} {title} {nombretitulo}
       </button>
     );
   }

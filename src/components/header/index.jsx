@@ -24,7 +24,7 @@ const HeaderLogo = styled.img`
 const Header = () => {
   const navigate = useNavigate();
   const handleClickBotonNuevoVideo = () => {
-    navigate("/addvideo");
+    navigate("add-video");
   };
 
   return (

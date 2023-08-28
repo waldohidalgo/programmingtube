@@ -1,4 +1,30 @@
 {
+  "categorias": [
+    {
+      "id": 1,
+      "categoria": "Python",
+      "descripcion": "Lenguaje Script de sintaxis sencilla y de curva de aprendizaje rapida. Posee numerosas librerias y cada vez se hace más poderoso.",
+      "color": "#6BD1FF"
+    },
+    {
+      "id": 2,
+      "categoria": "JavaScript",
+      "descripcion": "Lenguaje Script de la web el cual se hace más poderoso con el tiempo gracias a innumerables librerias y el paradigma JavaScript Everywhere",
+      "color": "#9CD33B"
+    },
+    {
+      "id": 3,
+      "categoria": "HTML",
+      "descripcion": "Lenguaje de marcado con el que se estructuran sitios web. Fundamental en desarrollo web",
+      "color": "#00C86F"
+    },
+    {
+      "id": 4,
+      "categoria": "CSS",
+      "descripcion": "Lenguaje de estilización de etiquetas HTML fundamental junto con HTML en el desarrollo web.",
+      "color": "#6B5BE2"
+    }
+  ],
   "videos": [
     {
       "id": 1,

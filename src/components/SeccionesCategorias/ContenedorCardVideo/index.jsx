@@ -56,33 +56,61 @@ function PrevArrow(props) {
 
 class ContenedorCardVideos extends Component {
   render() {
+    const arrayData = this.props.videosCategoria;
+    const mobileHandleInfinite = () => {
+      if (arrayData.length >= 1) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    const tabletHandleInfinite = () => {
+      if (arrayData.length >= 2) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    const DesktopHandleInfinite = () => {
+      if (arrayData.length >= 3) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
     const settings = {
       dots: true,
-      infinite: true,
       speed: 500,
+      infinite: DesktopHandleInfinite(),
       slidesToShow: 3,
-      slidesToScroll: 3,
+      slidesToScroll: 1,
       nextArrow: <NextArrow />,
       prevArrow: <PrevArrow />,
+      vertical: false,
       responsive: [
         {
           breakpoint: 1024,
           settings: {
+            infinite: DesktopHandleInfinite(),
             slidesToShow: 3,
-            slidesToScroll: 3,
+            slidesToScroll: 1,
           },
         },
         {
           breakpoint: 768,
           settings: {
+            infinite: tabletHandleInfinite(),
             slidesToShow: 2,
-            slidesToScroll: 2,
-            initialSlide: 2,
+            slidesToScroll: 1,
           },
         },
         {
           breakpoint: 480,
           settings: {
+            infinite: mobileHandleInfinite(),
             slidesToShow: 1,
             slidesToScroll: 1,
           },
@@ -92,12 +120,12 @@ class ContenedorCardVideos extends Component {
     return (
       <ContenedorSlider>
         <Slider {...settings}>
-          {this.props.videosCategoria.map((video, index) => {
+          {arrayData.map((video, index) => {
             return (
               <CardVideo
                 key={index}
                 video={video}
-                categoriaColor={this.props.categoriaColor}
+                categoriacolor={this.props.categoriacolor}
               />
             );
           })}

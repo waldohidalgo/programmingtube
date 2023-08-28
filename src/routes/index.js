@@ -1,14 +1,17 @@
 import Home from "../pages/Home";
 import Error404 from "../pages/Error404";
 import { Route, BrowserRouter, Routes } from "react-router-dom";
+import DefaultPage from "../pages/DefaultPage";
 
 import Header from "../components/header";
 import Footer from "../components/Footer";
 import PaginaNuevoVideo from "../pages/NuevoVideo";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import swal from "sweetalert";
+import { consultaAPIYoutube } from "../api/api";
 
 import data from "../datos/datos_iniciales.json";
+import WatchVideo from "../pages/WatchVideo";
 
 const MyWeb = () => {
   const [videos, setVideos] = useState([]);
@@ -45,7 +48,15 @@ const MyWeb = () => {
   ]);
 
   const handleDataFormAddVideo = (dataVideo) => {
-    console.log(dataVideo);
+    const { nombreVideo, url, categoria, descripcionVideo } = dataVideo;
+    consultaAPIYoutube(
+      url,
+      videos,
+      setVideos,
+      nombreVideo,
+      categoria,
+      descripcionVideo
+    );
   };
 
   const handleDataFormAddCategoría = (dataCategoria) => {
@@ -99,6 +110,39 @@ const MyWeb = () => {
   return (
     <>
       <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<DefaultPage />}>
+            <Route
+              index
+              element={<Home categoriasArray={categorias} data={videos} />}
+            />
+            <Route
+              path="add-video"
+              element={
+                <PaginaNuevoVideo
+                  categoriasArray={categorias}
+                  setCategoriasArray={setCategorias}
+                  handleDataFormAddVideo={handleDataFormAddVideo}
+                  handleDataFormAddCategoría={handleDataFormAddCategoría}
+                  handleDeleteCategory={handleDeleteCategory}
+                />
+              }
+            />
+            <Route
+              path="watch-video/:id"
+              element={<WatchVideo categorias={categorias} videos={videos} />}
+            />
+            <Route path="*" element={<Error404 />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+};
+
+export default MyWeb;
+
+/*<BrowserRouter>
         <Header />
         <Routes>
           <Route
@@ -120,9 +164,4 @@ const MyWeb = () => {
           <Route path="/*" element={<Error404 />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
-    </>
-  );
-};
-
-export default MyWeb;
+      </BrowserRouter>*/

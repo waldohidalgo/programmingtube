@@ -60,7 +60,7 @@ body{
 
 @font-face {
     font-family: "Carter";
-    src: url("/public/CarterOne-Regular.ttf") format("truetype");
+    src: url("/CarterOne-Regular.ttf") format("truetype");
   }
 
 `;
