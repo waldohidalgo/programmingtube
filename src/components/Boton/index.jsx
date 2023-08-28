@@ -115,6 +115,7 @@ const Boton = (props) => {
         className={className}
         type="button"
         style={{ marginTop: "1rem" }}
+        onClick={onClick}
       >
         {iconoBoton(icono)} {title} {nombretitulo}
       </button>

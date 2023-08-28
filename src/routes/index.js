@@ -8,10 +8,11 @@ import Footer from "../components/Footer";
 import PaginaNuevoVideo from "../pages/NuevoVideo";
 import { useEffect, useState, createContext, useContext } from "react";
 import swal from "sweetalert";
-import { consultaAPIYoutube } from "../api/api";
+import { consultaAPIYoutube } from "../api/apiyoutube";
 
 import data from "../datos/datos_iniciales.json";
 import WatchVideo from "../pages/WatchVideo";
+import Categorias from "../pages/WatchCategorias";
 
 const MyWeb = () => {
   const [videos, setVideos] = useState([]);
@@ -112,10 +113,7 @@ const MyWeb = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<DefaultPage />}>
-            <Route
-              index
-              element={<Home categoriasArray={categorias} data={videos} />}
-            />
+            <Route index element={<Home categoriasArray={categorias} />} />
             <Route
               path="add-video"
               element={
@@ -132,6 +130,7 @@ const MyWeb = () => {
               path="watch-video/:id"
               element={<WatchVideo categorias={categorias} videos={videos} />}
             />
+            <Route path="categoria/:categoria" element={<Categorias />} />
             <Route path="*" element={<Error404 />} />
           </Route>
         </Routes>

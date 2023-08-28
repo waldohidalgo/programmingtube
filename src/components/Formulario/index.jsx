@@ -135,6 +135,7 @@ const ContenedorBotonesCategoria = styled.div`
     flex-wrap: wrap;
   }
 `;
+
 export const FormularioVideoCategoria = ({
   categoriasArray,
   setCategoriasArray,

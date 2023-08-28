@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import "./Banner.css";
 
 const Banner = () => {
+  const navigate = useNavigate();
   return (
     <section className="banner">
       <div className="banner__eslogan">
@@ -32,6 +34,9 @@ const Banner = () => {
       <div className="banner__empiezapor">
         <h2 className="banner__empiezapor__titulo">COMIENZA POR:</h2>
         <button
+          onClick={() => {
+            navigate(`/categoria/python`);
+          }}
           title="Python: Lenguaje Script ideal para ingenieros no informáticos"
           className="banner__empiezapor__boton"
         >

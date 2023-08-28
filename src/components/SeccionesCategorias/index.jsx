@@ -2,6 +2,8 @@ import styled from "styled-components";
 import hexToRgba from "hex-to-rgba";
 import ContenedorCardVideos from "./ContenedorCardVideo";
 import Boton from "../Boton";
+import { useNavigate } from "react-router-dom";
+import { firstLetterCapital } from "../../funcionesUtiles";
 
 const SeccionCategorias = styled.section`
   background-color: ${(props) => hexToRgba(props.color, "0.4")};
@@ -76,6 +78,7 @@ const DescripcionVerCategorías = styled.p`
 `;
 
 const SeccionesCategorias = ({ categoriasArray, data }) => {
+  const navigate = useNavigate();
   return (
     <>
       {categoriasArray.map((categoriaObjeto, index) => {
@@ -89,7 +92,7 @@ const SeccionesCategorias = ({ categoriasArray, data }) => {
         return dataCategoria.length ? (
           <SeccionCategorias color={categoriaObjeto.color} key={index}>
             <TituloCategorias color={categoriaObjeto.color}>
-              {categoriaObjeto.categoria}
+              {firstLetterCapital(categoriaObjeto.categoria)}
             </TituloCategorias>
             <DescripcionCategorias>
               <SpanDescripcion>Descripción 🚀 :</SpanDescripcion>
@@ -114,10 +117,14 @@ const SeccionesCategorias = ({ categoriasArray, data }) => {
                 los videos de la categoría {categoriaObjeto.categoria}
               </DescripcionVerCategorías>
               <Boton
+                onClick={() => {
+                  console.log(`/categoria/${categoriaObjeto.categoria}`);
+                  navigate(`/categoria/${categoriaObjeto.categoria}`);
+                }}
                 title="Ver Categoría"
                 className="botonVerFullCategoria"
                 icono="iconoMasCategoria"
-                nombretitulo={categoriaObjeto.categoria}
+                nombretitulo={firstLetterCapital(categoriaObjeto.categoria)}
               />
             </ContenedorVerCategorías>
           </SeccionCategorias>

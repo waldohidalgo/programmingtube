@@ -1,5 +1,8 @@
 import { styled } from "styled-components";
 import { BsArrowDownSquare } from "react-icons/bs";
+import TextField from "@mui/material/TextField";
+import { useState } from "react";
+import { validarCampoVacio } from "./validaciones";
 
 const ContenedorCampoFormulario = styled.div`
   display: flex;
@@ -26,10 +29,13 @@ const InputFormulario = styled.input`
 
 export const CampoFormulario = (props) => {
   const { type, titulo, setValue, valor } = props;
+  const [valid, setValid] = useState(null);
 
   const handleChangeValue = (evento) => {
     setValue(evento.target.value);
+    setValid(validarCampoVacio(evento.target.value));
   };
+
   return (
     <>
       <ContenedorCampoFormulario>
@@ -40,14 +46,35 @@ export const CampoFormulario = (props) => {
           {titulo}
           <BsArrowDownSquare style={{ paddingLeft: "5px" }} />
         </label>
-        <InputFormulario
-          id={titulo}
-          type={type}
-          required={true}
-          onChange={handleChangeValue}
-          value={valor}
-          className={titulo.replace(/\s/g, "")}
-        />
+        {type === "color" ? (
+          <TextField
+            color="success"
+            id={titulo}
+            type={type}
+            required={true}
+            onChange={handleChangeValue}
+            value={valor}
+            sx={{ width: "100%" }}
+          />
+        ) : (
+          <TextField
+            color="success"
+            error={valid === false}
+            helperText={
+              valid === false ? "Este campo no puede estar vacío" : ""
+            }
+            id={titulo}
+            label={titulo}
+            type={type}
+            required={true}
+            onChange={handleChangeValue}
+            onBlur={(evento) => {
+              setValid(validarCampoVacio(evento.target.value));
+            }}
+            value={valor}
+            sx={{ width: "100%" }}
+          />
+        )}
       </ContenedorCampoFormulario>
     </>
   );
@@ -107,8 +134,11 @@ const ContenedorDescripcionTextArea = styled.div`
 `;
 export const DescripcionTextArea = (props) => {
   const { titulo, setValue, valor } = props;
+
+  const [valid, setValid] = useState(null);
   const handleChangeValue = (e) => {
     setValue(e.target.value);
+    setValid(validarCampoVacio(e.target.value));
   };
   return (
     <>
@@ -120,21 +150,25 @@ export const DescripcionTextArea = (props) => {
           {titulo}
           <BsArrowDownSquare style={{ paddingLeft: "5px" }} />{" "}
         </label>
-        <textarea
+        <TextField
+          color="success"
+          error={valid === false}
+          helperText={valid === false ? "Esta área no puede estar vacía" : ""}
           id={titulo}
-          style={{
+          label={titulo}
+          sx={{
             width: "100%",
             resize: "none",
             padding: "5px",
             borderRadius: "5px",
-            boxSizing: "border-box",
-            border: "2px solid",
           }}
-          rows="7"
+          rows={7}
+          multiline
           required={true}
           onChange={handleChangeValue}
+          onBlur={(e) => setValid(validarCampoVacio(e.target.value))}
           value={valor}
-        ></textarea>
+        ></TextField>
       </ContenedorDescripcionTextArea>
     </>
   );

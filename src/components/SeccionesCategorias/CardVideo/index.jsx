@@ -50,9 +50,8 @@ const TituloCard = styled.h1`
   text-overflow: ellipsis;
 `;
 
-const CardVideo = (props) => {
-  const { id, titulo, categoria, descripcion, url, imagen } = props.video;
-  const categoriacolor = props.categoriacolor;
+const CardVideo = ({ video, categoriacolor }) => {
+  const { id, titulo, categoria, descripcion, url, imagen } = video;
 
   const navigate = useNavigate();
 

@@ -3,6 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import hexToRgba from "hex-to-rgba";
 import ContenedorCardVideos from "../components/SeccionesCategorias/ContenedorCardVideo";
+import { useEffect, useState } from "react";
+import { consultaAPI } from "../api/apiJsonServer";
+import LoaderSection from "../components/LoaderSection";
 
 const Contenedor = styled.div`
   display: flex;
@@ -68,60 +71,89 @@ const ContenedorSlider = styled.div`
   margin-bottom: 2rem;
   border-top: 3px solid white;
 `;
-const WatchVideo = (props) => {
+
+const WatchVideo = () => {
   const params = useParams();
 
   const { id } = params;
 
-  const { categorias, videos } = props;
+  const [categorias, setCategorias] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const navigate = useNavigate();
 
-  const videosFiltrados = videos.filter((elemento) => {
-    return elemento.id.toString() === id;
-  })[0];
+  useEffect(() => {
+    consultaAPI("videos", setVideos);
+    consultaAPI("categorias", setCategorias);
+  }, []);
 
-  const { categoria, descripcion, imagen, url, titulo } = videosFiltrados;
-  const color = categorias.filter(
-    (elemento) => elemento.categoria === categoria
-  )[0].color;
-
-  return (
-    <>
-      <Contenedor color={color}>
-        <Titulo>{titulo}</Titulo>
-        <Descripcion>
-          <SpanDescripcion>
-            Descripción
-            <img
-              style={{ width: "3rem", marginBottom: "-1rem" }}
-              src="https://img.icons8.com/clouds/100/right.png"
-              alt="right"
-            />
-            {":"}
-          </SpanDescripcion>
-
-          {descripcion}
-        </Descripcion>
-        <ContenedorIframe color={color}>
-          <Iframe
-            src={url}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></Iframe>
-        </ContenedorIframe>
-        <ContenedorSlider>
-          <Titulo>Videos Relacionados 🤓</Titulo>
-          <ContenedorCardVideos
-            videosCategoria={videos.filter(
-              (ObjetoVideo) =>
-                ObjetoVideo.categoria.toLowerCase() === categoria.toLowerCase()
-            )}
-            categoriacolor={color}
+  if (videos.length === 0 || categorias.length === 0) {
+    return (
+      <>
+        <LoaderSection>
+          <p>⏳ Cargando data ...</p>
+          <img
+            src={process.env.PUBLIC_URL + "/img/giphy.gif"}
+            alt="Cargando data Gif"
           />
-        </ContenedorSlider>
-      </Contenedor>
-    </>
-  );
+        </LoaderSection>
+      </>
+    );
+  } else {
+    try {
+      const videosFiltrados = videos.filter((elemento) => {
+        return elemento.id.toString() === id;
+      })[0];
+
+      const { categoria, descripcion, imagen, url, titulo } = videosFiltrados;
+      const color = categorias.filter(
+        (elemento) => elemento.categoria === categoria
+      )[0].color;
+
+      return (
+        <>
+          <Contenedor color={color}>
+            <Titulo>{titulo}</Titulo>
+
+            <Descripcion>
+              <SpanDescripcion>
+                Descripción
+                <img
+                  style={{ width: "3rem", marginBottom: "-1rem" }}
+                  src="https://img.icons8.com/clouds/100/right.png"
+                  alt="right"
+                />
+                {":"}
+              </SpanDescripcion>
+
+              {descripcion}
+            </Descripcion>
+            <ContenedorIframe color={color}>
+              <Iframe
+                src={url}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></Iframe>
+            </ContenedorIframe>
+            <ContenedorSlider>
+              <Titulo>Videos Relacionados 🤓</Titulo>
+              <ContenedorCardVideos
+                videosCategoria={videos.filter(
+                  (ObjetoVideo) =>
+                    ObjetoVideo.categoria.toLowerCase() ===
+                    categoria.toLowerCase()
+                )}
+                categoriacolor={color}
+              />
+            </ContenedorSlider>
+          </Contenedor>
+        </>
+      );
+    } catch (error) {
+      console.log("errro");
+      navigate("/error-404");
+    }
+  }
 };
 
 export default WatchVideo;
