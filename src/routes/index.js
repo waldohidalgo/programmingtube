@@ -7,7 +7,7 @@ import Header from "../components/header";
 import Footer from "../components/Footer";
 import PaginaNuevoVideo from "../pages/NuevoVideo";
 import { useEffect, useState, createContext, useContext } from "react";
-import swal from "sweetalert";
+
 import { consultaAPIYoutube } from "../api/apiyoutube";
 
 import data from "../datos/datos_iniciales.json";
@@ -48,88 +48,14 @@ const MyWeb = () => {
     },
   ]);
 
-  const handleDataFormAddVideo = (dataVideo) => {
-    const { nombreVideo, url, categoria, descripcionVideo } = dataVideo;
-    consultaAPIYoutube(
-      url,
-      videos,
-      setVideos,
-      nombreVideo,
-      categoria,
-      descripcionVideo
-    );
-  };
-
-  const handleDataFormAddCategoría = (dataCategoria) => {
-    const {
-      id,
-      nombreCategoria: categoria,
-      descripcionCategoria: descripcion,
-      colorCategoria: color,
-    } = dataCategoria;
-
-    if (
-      categorias
-        .map((objeto) => objeto.categoria.toLowerCase())
-        .includes(categoria.toLowerCase())
-    ) {
-      swal("¡ Advertencia !", "Nombre de Categoria ya existe", "warning");
-    } else if (
-      categorias
-        .map((objeto) => objeto.descripcion.toLowerCase())
-        .includes(descripcion.toLowerCase())
-    ) {
-      swal("¡ Advertencia !", "Descripción de Categoría ya existe", "warning");
-    } else if (
-      categorias
-        .map((objeto) => objeto.color.toLowerCase())
-        .includes(color.toLowerCase())
-    ) {
-      swal("¡ Advertencia !", "Color de Categoría ya existe", "warning");
-    } else {
-      const nuevasCategorias = [
-        ...categorias,
-        { id, categoria, descripcion, color },
-      ];
-
-      setCategorias(nuevasCategorias);
-      swal(
-        "¡ Éxito !",
-        "Has creado de manera exitosa una nueva categoría 😀. Ahora crea nuevos videos para esa categoría",
-        "success"
-      );
-    }
-  };
-
-  const handleDeleteCategory = (id) => {
-    const nuevasCategorias = categorias.filter((objetoCategoria) => {
-      return objetoCategoria.id !== id;
-    });
-    setCategorias(nuevasCategorias);
-  };
-
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<DefaultPage />}>
-            <Route index element={<Home categoriasArray={categorias} />} />
-            <Route
-              path="add-video"
-              element={
-                <PaginaNuevoVideo
-                  categoriasArray={categorias}
-                  setCategoriasArray={setCategorias}
-                  handleDataFormAddVideo={handleDataFormAddVideo}
-                  handleDataFormAddCategoría={handleDataFormAddCategoría}
-                  handleDeleteCategory={handleDeleteCategory}
-                />
-              }
-            />
-            <Route
-              path="watch-video/:id"
-              element={<WatchVideo categorias={categorias} videos={videos} />}
-            />
+            <Route index element={<Home />} />
+            <Route path="add-video" element={<PaginaNuevoVideo />} />
+            <Route path="watch-video/:id" element={<WatchVideo />} />
             <Route path="categoria/:categoria" element={<Categorias />} />
             <Route path="*" element={<Error404 />} />
           </Route>

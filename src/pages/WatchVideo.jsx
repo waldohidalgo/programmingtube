@@ -84,7 +84,7 @@ const WatchVideo = () => {
   useEffect(() => {
     consultaAPI("videos", setVideos);
     consultaAPI("categorias", setCategorias);
-  }, []);
+  }, [videos, categorias]);
 
   if (videos.length === 0 || categorias.length === 0) {
     return (
@@ -111,46 +111,47 @@ const WatchVideo = () => {
 
       return (
         <>
-          <Contenedor color={color}>
-            <Titulo>{titulo}</Titulo>
+          {
+            <Contenedor color={color}>
+              <Titulo>{titulo}</Titulo>
 
-            <Descripcion>
-              <SpanDescripcion>
-                Descripción
-                <img
-                  style={{ width: "3rem", marginBottom: "-1rem" }}
-                  src="https://img.icons8.com/clouds/100/right.png"
-                  alt="right"
+              <Descripcion>
+                <SpanDescripcion>
+                  Descripción
+                  <img
+                    style={{ width: "3rem", marginBottom: "-1rem" }}
+                    src="https://img.icons8.com/clouds/100/right.png"
+                    alt="right"
+                  />
+                  {":"}
+                </SpanDescripcion>
+
+                {descripcion}
+              </Descripcion>
+              <ContenedorIframe color={color}>
+                <Iframe
+                  src={url}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></Iframe>
+              </ContenedorIframe>
+              <ContenedorSlider>
+                <Titulo>Videos Relacionados 🤓</Titulo>
+                <ContenedorCardVideos
+                  videosCategoria={videos.filter(
+                    (ObjetoVideo) =>
+                      ObjetoVideo.categoria.toLowerCase() ===
+                      categoria.toLowerCase()
+                  )}
+                  categoriacolor={color}
                 />
-                {":"}
-              </SpanDescripcion>
-
-              {descripcion}
-            </Descripcion>
-            <ContenedorIframe color={color}>
-              <Iframe
-                src={url}
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></Iframe>
-            </ContenedorIframe>
-            <ContenedorSlider>
-              <Titulo>Videos Relacionados 🤓</Titulo>
-              <ContenedorCardVideos
-                videosCategoria={videos.filter(
-                  (ObjetoVideo) =>
-                    ObjetoVideo.categoria.toLowerCase() ===
-                    categoria.toLowerCase()
-                )}
-                categoriacolor={color}
-              />
-            </ContenedorSlider>
-          </Contenedor>
+              </ContenedorSlider>
+            </Contenedor>
+          }
         </>
       );
     } catch (error) {
-      console.log("errro");
       navigate("/error-404");
     }
   }

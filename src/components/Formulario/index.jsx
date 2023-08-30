@@ -9,6 +9,7 @@ import Boton from "../Boton";
 import { useState } from "react";
 import swal from "sweetalert";
 import TablaDescripcionCategorias from "./DetalleCategoria";
+import { firstLetterCapital } from "../../funcionesUtiles";
 
 const SectionAddVideo = styled.section`
   background-color: #8bb7f0;
@@ -138,10 +139,10 @@ const ContenedorBotonesCategoria = styled.div`
 
 export const FormularioVideoCategoria = ({
   categoriasArray,
-  setCategoriasArray,
   handleDataFormAddVideo,
   handleDataFormAddCategoría,
   handleDeleteCategory,
+  handleEditCategoryForm,
 }) => {
   const [nombreVideo, setNombreVideo] = useState("");
   const [url, setURL] = useState("");
@@ -194,51 +195,6 @@ export const FormularioVideoCategoria = ({
     setIdCategoria(0);
   };
 
-  const handleEditCategoryForm = (id) => {
-    if (nombreCategoria === "" && descripcionCategoria === "") {
-      swal(
-        "¡ Advertencia !",
-        "No puedes crear categorías sin nombre ni descripción",
-        "warning"
-      );
-      return;
-    }
-    if (
-      !categoriasArray.map((objetoCategoria) => objetoCategoria.id).includes(id)
-    ) {
-      swal(
-        "¡ Advertencia !",
-        "La Categoría a editar no existe. Para editar categorias, selecciona alguna categoría de la tabla haciendo click en editar y a continuación editar los campos mostrados en el formulario. Finalizar haciendo click en el botón Editar Categoría.",
-        "warning"
-      );
-    } else {
-      const nuevoArrayCategorias = categoriasArray.map((objetoCategoria) => {
-        if (objetoCategoria.id === id) {
-          return {
-            id,
-            categoria: nombreCategoria,
-            descripcion: descripcionCategoria,
-            color: colorCategoria,
-          };
-        } else {
-          return objetoCategoria;
-        }
-      });
-      setCategoriasArray(nuevoArrayCategorias);
-      swal(
-        "¡ Éxito !",
-        `Felicidades has editado la categoría ${
-          nuevoArrayCategorias.filter(
-            (objetoCategoria) => objetoCategoria.id === id
-          )[0].categoria
-        }`,
-        "success"
-      );
-      setIdCategoria(0);
-      handleCleanFormularioCategoria();
-    }
-  };
-
   const showDataCategory = (objetoCategoria) => {
     setNombreCategoría(objetoCategoria.categoria);
     setDescripcionCategoría(objetoCategoria.descripcion);
@@ -264,8 +220,8 @@ export const FormularioVideoCategoria = ({
           />
           <ListaOpciones
             titulo={"Categoría"}
-            categorias={categoriasArray.map(
-              (categoriasObjeto) => categoriasObjeto.categoria
+            categorias={categoriasArray.map((categoriasObjeto) =>
+              firstLetterCapital(categoriasObjeto.categoria)
             )}
             valor={categoria}
             setCategoria={setCategoria}
@@ -352,7 +308,18 @@ export const FormularioVideoCategoria = ({
                 className="botonEditarCategoria"
                 title="Editar Categoría"
                 icono="iconoEdit"
-                onClick={() => handleEditCategoryForm(idCategoria)}
+                onClick={() => {
+                  const objetoEdit = {
+                    id: idCategoria,
+                    categoria: nombreCategoria,
+                    descripcion: descripcionCategoria,
+                    color: colorCategoria,
+                  };
+                  handleEditCategoryForm(
+                    objetoEdit,
+                    handleCleanFormularioCategoria
+                  );
+                }}
               />
             </ContenedorBotonesCategoria>
             <TablaDescripcionCategorias

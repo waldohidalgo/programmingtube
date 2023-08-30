@@ -39,7 +39,13 @@ const Error404 = () => {
       <Section>
         <ContenedorImagen>
           <h1
-            style={{ fontSize: "80px", textAlign: "center", fontWeight: 700 }}
+            style={{
+              fontSize: "80px",
+              textAlign: "center",
+              fontWeight: 700,
+              fontFamily: '"Carter", sans-serif',
+              paddingTop: "1rem",
+            }}
           >
             404
           </h1>
@@ -48,8 +54,15 @@ const Error404 = () => {
           <p style={{ fontWeight: 700, fontSize: 25, paddingBottom: 15 }}>
             Parece que estas perdido 🤔
           </p>
-          <p style={{ color: "red", fontWeight: 600 }}>
-            ¡La página que estas buscando no esta disponible!
+          <p
+            style={{
+              color: "red",
+              fontWeight: 600,
+              fontFamily: '"Carter", sans-serif',
+              fontSize: "1.5rem",
+            }}
+          >
+            ¡ La página que estas buscando no esta disponible !
           </p>
           <Link404>
             <Link to="/" title="Ir a la página de Inicio">

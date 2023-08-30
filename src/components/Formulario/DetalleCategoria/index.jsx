@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { firstLetterCapital } from "../../../funcionesUtiles";
 
 const Tabla = styled.table`
   margin-top: 1rem;
@@ -79,7 +80,7 @@ const TablaDescripcionCategorias = ({
           {categoriasArray.map((objetoCategoria) => {
             return (
               <tr key={objetoCategoria.id}>
-                <td>{objetoCategoria.categoria}</td>
+                <td>{firstLetterCapital(objetoCategoria.categoria)}</td>
                 <td>{objetoCategoria.descripcion.substring(0, 45) + "..."}</td>
                 <td
                   style={{ backgroundColor: `${objetoCategoria.color}` }}

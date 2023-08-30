@@ -38,6 +38,8 @@ const DescripcionCategorias = styled.p`
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   line-height: 2rem;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 
 const SpanDescripcion = styled.span`
@@ -118,7 +120,6 @@ const SeccionesCategorias = ({ categoriasArray, data }) => {
               </DescripcionVerCategorías>
               <Boton
                 onClick={() => {
-                  console.log(`/categoria/${categoriaObjeto.categoria}`);
                   navigate(`/categoria/${categoriaObjeto.categoria}`);
                 }}
                 title="Ver Categoría"

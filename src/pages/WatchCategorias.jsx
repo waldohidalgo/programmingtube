@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import LoaderSection from "../components/LoaderSection";
@@ -48,8 +48,11 @@ const ContenedorAllVideos = styled.div`
 
 const ContenedorTitulo = styled.div`
   text-align: center;
-  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
   font-size: 2rem;
+  padding-left: 15px;
+  padding-right: 15px;
   @media screen and (min-width: 550px) and (max-width: 767px) {
     font-size: 2.5rem;
   }
@@ -76,14 +79,19 @@ const Categorias = () => {
   const { categoria } = params;
   const [categorias, setCategorias] = useState([]);
   const [videos, setVideos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const buildPathUrlCategoria = `categorias?categoria=${categoria}`;
-    consultaAPI(buildPathUrlCategoria, setCategorias);
+    consultaAPI(buildPathUrlCategoria, setCategorias).catch(() => {
+      navigate("/error-404");
+    });
 
     const buildPathUrlVideos = `videos?categoria=${categoria}`;
-    consultaAPI(buildPathUrlVideos, setVideos);
-  }, [categoria]);
+    consultaAPI(buildPathUrlVideos, setVideos).catch(() => {
+      navigate("/error-404");
+    });
+  }, [categoria, navigate]);
 
   if (categorias.length === 0 || videos.length === 0) {
     return <LoaderSection />;
