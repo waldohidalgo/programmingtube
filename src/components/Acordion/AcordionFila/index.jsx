@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiArrowDownCircle, FiArrowUpCircle } from "react-icons/fi";
 import { styled } from "styled-components";
+import parse from "html-react-parser";
 
 const ContenedorFila = styled.div`
   .contenedor__componentes__fila {
@@ -9,6 +10,7 @@ const ContenedorFila = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: 1px solid black;
 
     &:hover {
       cursor: pointer;
@@ -30,7 +32,7 @@ const ContenedorFila = styled.div`
 `;
 
 const AcordionFila = ({ titulo, descripcion }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const toggleAcordion = () => {
     setIsExpanded(!isExpanded);
   };
@@ -58,7 +60,7 @@ const AcordionFila = ({ titulo, descripcion }) => {
         </div>
         {isExpanded ? (
           <p className={`contenedor__componentes__fila__descripcion`}>
-            {descripcion}
+            {parse(descripcion)}
           </p>
         ) : (
           <></>

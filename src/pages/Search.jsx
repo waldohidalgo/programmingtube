@@ -6,12 +6,25 @@ import LoaderSection from "../components/LoaderSection";
 import CardVideo from "../components/SeccionesCategorias/CardVideo";
 
 const TituloParagraph = styled.p`
-  padding-top: 2rem;
-  padding-bottom: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   font-family: "Roboto", sans-serif;
   font-weight: 600;
   text-align: center;
   font-size: 2rem;
+  .destaque {
+    font-family: "Carter", sans-serif;
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+    text-decoration-color: red;
+  }
+`;
+const SubTituloParagraph = styled.p`
+  padding-bottom: 1rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.5rem;
   .destaque {
     font-family: "Carter", sans-serif;
     text-decoration: underline;
@@ -121,6 +134,11 @@ const SearchPage = () => {
             Se ha buscado la palabra:{" "}
             <span className="destaque">{myParamSearch}</span>
           </TituloParagraph>
+          <SubTituloParagraph>
+            Esta búsqueda arrojo:{" "}
+            <span className="destaque">{videosFiltrados.length}</span>{" "}
+            resultados
+          </SubTituloParagraph>
           <ContenedorAllVideos>
             {videosFiltrados.length > 0 ? (
               videosFiltrados.map((objeto, index) => {

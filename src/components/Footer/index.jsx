@@ -17,29 +17,29 @@ const Footer = () => {
           <p className="footer__contenedor_paginas_titulo">Menú</p>
           <ul className="footer__contenedor_paginas_lista">
             <li className="footer__contenedor_paginas_item">
-              <a href="#" title="Términos de Uso">
+              <Link to="#" title="Términos de Uso">
                 Términos de Uso
-              </a>
+              </Link>
             </li>
             <li className="footer__contenedor_paginas_item">
-              <a href="#" title="Derechos de Autor">
+              <Link to="#" title="Derechos de Autor">
                 Derechos de Autor
-              </a>
+              </Link>
             </li>
             <li className="footer__contenedor_paginas_item">
-              <a href="" title="Política de Privacidad">
+              <Link to="#" title="Política de Privacidad">
                 Política de Privacidad
-              </a>
+              </Link>
             </li>
             <li className="footer__contenedor_paginas_item">
-              <a href="" title="Preguntas Frecuentes">
+              <Link to="#PreguntasFrecuentes" title="Preguntas Frecuentes">
                 Preguntas Frecuentes
-              </a>
+              </Link>
             </li>
             <li className="footer__contenedor_paginas_item">
-              <a href="" title="Publicidad">
+              <Link to="#" title="Publicidad">
                 Publicidad
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
