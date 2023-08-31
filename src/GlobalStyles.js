@@ -61,7 +61,15 @@ body{
 @font-face {
     font-family: "Carter";
     src: url("/CarterOne-Regular.ttf") format("truetype");
+
   }
+
+  @font-face {
+    font-family: "Inter";
+    src: url("/Inter.ttf") format("truetype");
+	
+  }
+ 
 
 `;
 

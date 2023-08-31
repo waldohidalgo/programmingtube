@@ -13,6 +13,7 @@ import { consultaAPIYoutube } from "../api/apiyoutube";
 import data from "../datos/datos_iniciales.json";
 import WatchVideo from "../pages/WatchVideo";
 import Categorias from "../pages/WatchCategorias";
+import SearchPage from "../pages/Search";
 
 const MyWeb = () => {
   const [videos, setVideos] = useState([]);
@@ -57,6 +58,7 @@ const MyWeb = () => {
             <Route path="add-video" element={<PaginaNuevoVideo />} />
             <Route path="watch-video/:id" element={<WatchVideo />} />
             <Route path="categoria/:categoria" element={<Categorias />} />
+            <Route path="search" element={<SearchPage />} />
             <Route path="*" element={<Error404 />} />
           </Route>
         </Routes>

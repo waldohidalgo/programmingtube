@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import SeccionesCategorias from "../components/SeccionesCategorias";
 import { consultaAPI } from "../api/apiJsonServer";
 import LoaderSection from "../components/LoaderSection";
+import Acordion from "../components/Acordion";
 
 const Home = () => {
   const [dataVideos, setDataVideos] = useState([]);
@@ -19,6 +20,7 @@ const Home = () => {
     return (
       <>
         <Banner />
+        <Acordion />
         <SeccionesCategorias categoriasArray={categorias} data={dataVideos} />
       </>
     );
