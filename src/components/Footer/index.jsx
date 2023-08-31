@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import { HashLink } from "react-router-hash-link";
 
 const Footer = () => {
   return (
@@ -32,9 +33,12 @@ const Footer = () => {
               </Link>
             </li>
             <li className="footer__contenedor_paginas_item">
-              <Link to="#PreguntasFrecuentes" title="Preguntas Frecuentes">
+              <HashLink
+                to={"/#PreguntasFrecuentes"}
+                title="Preguntas Frecuentes"
+              >
                 Preguntas Frecuentes
-              </Link>
+              </HashLink>
             </li>
             <li className="footer__contenedor_paginas_item">
               <Link to="#" title="Publicidad">

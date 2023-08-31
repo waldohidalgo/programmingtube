@@ -5,10 +5,17 @@ import LoaderSection from "../components/LoaderSection";
 import { consultaAPI } from "../api/apiJsonServer";
 import CardVideo from "../components/SeccionesCategorias/CardVideo";
 import { firstLetterCapital } from "../funcionesUtiles";
+import AmpolletaSelectorTheme from "../components/Ampolleta";
+import { temaClaro, temaOscuro } from "../components/UI/temas";
+import { ThemeProvider } from "styled-components";
 
 const ContenedorVideosCategoria = styled.section`
   padding-top: 1rem;
   padding-bottom: 1rem;
+  background-color: ${(props) => {
+    return props.theme.temaSeleccionado.backgroundColor;
+  }};
+  position: relative;
 `;
 
 const SpanCategoriaTitulo = styled.span`
@@ -53,6 +60,9 @@ const ContenedorTitulo = styled.div`
   font-size: 2rem;
   padding-left: 15px;
   padding-right: 15px;
+  color: ${(props) => {
+    return props.theme.temaSeleccionado.textColor;
+  }};
   @media screen and (min-width: 550px) and (max-width: 767px) {
     font-size: 2.5rem;
   }
@@ -75,6 +85,7 @@ const ImagenTitulo = styled.img`
 
 const Categorias = () => {
   const params = useParams();
+  const [temaSeleccionado, setTemaSeleccionado] = useState(temaOscuro);
 
   const { categoria } = params;
   const [categorias, setCategorias] = useState([]);
@@ -96,34 +107,47 @@ const Categorias = () => {
   if (categorias.length === 0 || videos.length === 0) {
     return <LoaderSection />;
   } else {
+    const handleChangeTheme = (nombreTema) => {
+      if (nombreTema === "temaOscuro") {
+        setTemaSeleccionado(temaClaro);
+      } else {
+        setTemaSeleccionado(temaOscuro);
+      }
+    };
     return (
       <>
-        <ContenedorVideosCategoria>
-          <ContenedorTitulo>
-            <SpanCategoriaTitulo>
-              <ImagenTitulo
-                src="https://img.icons8.com/emoji/48/books-emoji.png"
-                alt="books-emoji"
-              />
-              Categoría:{" "}
-            </SpanCategoriaTitulo>
-            <SpanCategoriaTituloCategoria color={categorias[0].color}>
-              {firstLetterCapital(categoria)}
-            </SpanCategoriaTituloCategoria>
-          </ContenedorTitulo>
-          <ContenedorAllVideos>
-            {videos.map((objeto, index) => {
-              return (
-                <ContenedorVideo key={index}>
-                  <CardVideo
-                    video={objeto}
-                    categoriacolor={categorias[0].color}
-                  />
-                </ContenedorVideo>
-              );
-            })}
-          </ContenedorAllVideos>
-        </ContenedorVideosCategoria>
+        <ThemeProvider theme={{ temaSeleccionado }}>
+          <ContenedorVideosCategoria>
+            <AmpolletaSelectorTheme
+              theme={temaSeleccionado}
+              handleChangeTheme={handleChangeTheme}
+            />
+            <ContenedorTitulo>
+              <SpanCategoriaTitulo>
+                <ImagenTitulo
+                  src="https://img.icons8.com/emoji/48/books-emoji.png"
+                  alt="books-emoji"
+                />
+                Categoría:{" "}
+              </SpanCategoriaTitulo>
+              <SpanCategoriaTituloCategoria color={categorias[0].color}>
+                {firstLetterCapital(categoria)}
+              </SpanCategoriaTituloCategoria>
+            </ContenedorTitulo>
+            <ContenedorAllVideos>
+              {videos.map((objeto, index) => {
+                return (
+                  <ContenedorVideo key={index}>
+                    <CardVideo
+                      video={objeto}
+                      categoriacolor={categorias[0].color}
+                    />
+                  </ContenedorVideo>
+                );
+              })}
+            </ContenedorAllVideos>
+          </ContenedorVideosCategoria>
+        </ThemeProvider>
       </>
     );
   }

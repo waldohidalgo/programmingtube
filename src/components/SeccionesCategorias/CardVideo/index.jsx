@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Boton from "../../Boton";
 import { useNavigate } from "react-router-dom";
+import { temaClaro } from "../../UI/temas";
 
 const ContenedorCard = styled.div`
   box-sizing: border-box;
@@ -12,18 +13,42 @@ const ContenedorCard = styled.div`
   justify-content: space-between;
   border: 1px solid black;
   border-radius: 10px;
-  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 21px -5px ${(props) => {
+      if (!props.theme?.temaSeleccionado?.colorBoxShadow) {
+        return temaClaro.colorBoxShadow;
+      }
+      return props.theme.temaSeleccionado.colorBoxShadow;
+    }};
   margin-left: 2px;
   margin-right: 2px;
   margin-bottom: 5px;
   margin-top: 5px;
+  background-color: ${(props) => {
+    if (!props.theme?.temaSeleccionado?.backgroundColorCard) {
+      return temaClaro.backgroundColorCard;
+    }
+    return props.theme.temaSeleccionado.backgroundColorCard;
+  }};
+
   &:hover {
-    background-color: black;
+    background-color: ${(props) => {
+      if (!props.theme?.temaSeleccionado?.colorBackgroundHoverCard) {
+        return temaClaro.colorBackgroundHoverCard;
+      }
+      return props.theme.temaSeleccionado.colorBackgroundHoverCard;
+    }};
     color: white;
-    box-shadow: 3px 1px 16px 6px rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 21px -5px rgba(255, 255, 255, 1);
     transform: scale(0.95);
     transition: transform 1s ease;
-    border: 4px solid #e4087d;
+    border: 4px solid
+      ${(props) => {
+        if (!props.theme?.temaSeleccionado?.borderColor) {
+          return temaClaro.borderColor;
+        } else {
+          return props.theme.temaSeleccionado.borderColor;
+        }
+      }};
   }
 `;
 

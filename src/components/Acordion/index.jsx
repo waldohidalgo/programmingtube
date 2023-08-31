@@ -36,7 +36,7 @@ const Acordion = () => {
       id: 1,
       titulo: "1. ¿Por qué es tan importante saber programar?",
       descripcion:
-        "Programar <span style='font-weight: 700;'>ES</span> la habilidad del siglo XXI. Si se hace un recorrido por LinkedIn se puede constatar el surgimiento de innumebles empresas que se basan en utilización de tecnología en su núcleo. Además, las empresas tradicionales que no se adaptan a los nuevos tiempos estan siendo eliminadas o, derechamente, perdiendo cuota de mercado frente a miles de nuevos negocios que se fundamentan en la tecnología. El resto de empresas tradicionales enfrentan procesos de transformación digital en la cual es un <span style='font-weight: 700;'>DEBER</span> para seguir siendo competitivos.",
+        "Programar <span style='font-weight: 700;'>ES</span> la habilidad del siglo XXI. Si se hace un recorrido por LinkedIn se puede constatar el surgimiento de innumebles empresas que se basan en utilización de tecnología en su núcleo. Además, las empresas tradicionales que no se adaptan a los nuevos tiempos estan siendo eliminadas o, derechamente, perdiendo cuota de mercado frente a miles de nuevos negocios que se fundamentan en la tecnología. El resto de empresas tradicionales enfrentan procesos de transformación digital lo cual es un <span style='font-weight: 700;'>DEBER</span> para seguir siendo competitivos.",
     },
     {
       id: 2,
@@ -54,7 +54,7 @@ const Acordion = () => {
       id: 4,
       titulo: "4. ¿Qué lenguajes me recomiendan para empezar?",
       descripcion:
-        "Le recomiendo para empezar lenguajes de sintaxis sencilla en los cuales el enfoque no este tanto en la sintaxis sino en aprender a crear utilizando un lenguaje lo más cercano a un lenguaje natural (de alto nivel) y para ese objetivo, el lenguaje que le recomiendo es Python y, en general, cualquier lenguaje del tipo <span style='font-weight: 700;'>SCRIPTING</span>. Si usted es ingeniero no informático y necesita aprender a programar para solucionar problemas en su entorno sin pasar por un enorme camino de aprendizaje, le recomiendo que se enfoque 100% en lenguajes scripting.",
+        "Le recomiendo para empezar lenguajes de sintaxis sencilla en los cuales el enfoque no este tanto en la sintaxis sino en aprender a crear utilizando un lenguaje lo más cercano a un lenguaje natural (de alto nivel) y para ese objetivo, el lenguaje que le recomiendo es Python y, en general, cualquier lenguaje del tipo <span style='font-weight: 700;'>SCRIPTING</span>. Si usted es ingeniero no informático y necesita aprender a programar para solucionar problemas en su entorno sin pasar por una enorme curva de aprendizaje, le recomiendo que se enfoque 100% en lenguajes scripting.",
     },
     {
       id: 5,
@@ -66,7 +66,7 @@ const Acordion = () => {
       id: 6,
       titulo: "6. ¿Me garantiza acceder a un trabajo al saber programar?",
       descripcion:
-        "Lamentablemente, el aprender a programar por si solo no garantiza encontrar un trabajo ya que esto esta influenciado por muchos factores. Además, mucha gente se encuentra en la misma situación que usted. Por tanto, tiene <span style='font-weight: 700;'>2 opciones</span>: diferenciarse del resto y competir por trabajos con miles de personas o emprender un camino en la búsqueda de clientes vía la oferta de soluciones creadas por usted. Ambos enfoques son válidos pero el trato al que se verá expuesto puede diferir de gran manera entre un enfoque u otro. Sin embargo, independiente de su elección, ambos enfoques requieren un continuo aprendizaje y en la medida que el Life Long Learning sea su camino director, el acceso a trabajos debiera será mayor en el enfoque primero o la oferta de soluciones a clientes también debiera ser mayor en el segundo enfoque.",
+        "Lamentablemente, el aprender a programar por si solo no garantiza encontrar un trabajo ya que esto esta influenciado por muchos factores. Además, mucha gente se encuentra en la misma situación que usted. Por tanto, tiene <span style='font-weight: 700;'>2 opciones</span>: diferenciarse del resto y competir por trabajos junto a miles de personas o emprender un camino en la búsqueda de clientes vía la oferta de soluciones creadas por usted. Ambos enfoques son válidos pero el trato al que se verá expuesto puede diferir de gran manera entre un enfoque u otro. Sin embargo, independiente de su elección, ambos enfoques requieren un continuo aprendizaje y en la medida que el Life Long Learning sea su camino director, el acceso a trabajos debiera será mayor en el enfoque primero o la oferta de soluciones a clientes también debiera ser mayor en el segundo enfoque.",
     },
   ];
 

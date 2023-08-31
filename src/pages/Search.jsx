@@ -4,6 +4,9 @@ import { styled } from "styled-components";
 import { consultaAPI } from "../api/apiJsonServer";
 import LoaderSection from "../components/LoaderSection";
 import CardVideo from "../components/SeccionesCategorias/CardVideo";
+import AmpolletaSelectorTheme from "../components/Ampolleta";
+import { temaClaro, temaOscuro } from "../components/UI/temas";
+import { ThemeProvider } from "styled-components";
 
 const TituloParagraph = styled.p`
   padding-top: 1rem;
@@ -12,6 +15,12 @@ const TituloParagraph = styled.p`
   font-weight: 600;
   text-align: center;
   font-size: 2rem;
+  color: ${(props) => {
+    if (!props.theme?.temaSeleccionado?.textColor) {
+      return temaClaro.textColor;
+    }
+    return props.theme.temaSeleccionado.textColor;
+  }};
   .destaque {
     font-family: "Carter", sans-serif;
     text-decoration: underline;
@@ -25,6 +34,12 @@ const SubTituloParagraph = styled.p`
   font-weight: 600;
   text-align: center;
   font-size: 1.5rem;
+  color: ${(props) => {
+    if (!props.theme?.temaSeleccionado?.textColor) {
+      return temaClaro.textColor;
+    }
+    return props.theme.temaSeleccionado.textColor;
+  }};
   .destaque {
     font-family: "Carter", sans-serif;
     text-decoration: underline;
@@ -67,6 +82,9 @@ const ContenedorNotFound = styled.div`
     font-family: "Carter", sans-serif;
     font-size: 1rem;
     padding-bottom: 2rem;
+    color: ${(props) => {
+      return props.theme.temaSeleccionado.textColor;
+    }};
 
     @media screen and (min-width: 550px) {
       font-size: 2rem;
@@ -82,7 +100,15 @@ const ContenedorNotFound = styled.div`
     }
   }
 `;
+
+const ContenedorBusqueda = styled.section`
+  position: relative;
+  background-color: ${(props) => {
+    return props.theme.temaSeleccionado.backgroundColor;
+  }};
+`;
 const SearchPage = () => {
+  const [temaSeleccionado, setTemaSeleccionado] = useState(temaOscuro);
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -127,44 +153,58 @@ const SearchPage = () => {
       }
     });
 
+    const handleChangeTheme = (nombreTema) => {
+      if (nombreTema === "temaOscuro") {
+        setTemaSeleccionado(temaClaro);
+      } else {
+        setTemaSeleccionado(temaOscuro);
+      }
+    };
+
     return (
       <>
-        <div>
-          <TituloParagraph>
-            Se ha buscado la palabra:{" "}
-            <span className="destaque">{myParamSearch}</span>
-          </TituloParagraph>
-          <SubTituloParagraph>
-            Esta búsqueda arrojo:{" "}
-            <span className="destaque">{videosFiltrados.length}</span>{" "}
-            resultados
-          </SubTituloParagraph>
-          <ContenedorAllVideos>
-            {videosFiltrados.length > 0 ? (
-              videosFiltrados.map((objeto, index) => {
-                return (
-                  <ContenedorVideo key={index}>
-                    <CardVideo
-                      video={objeto}
-                      categoriacolor={categorias[0].color}
-                    />
-                  </ContenedorVideo>
-                );
-              })
-            ) : (
-              <ContenedorNotFound>
-                <h1 className="contenedor_notfound_titulo">
-                  🥺No hay resultados para esta búsqueda
-                </h1>
-                <img
-                  src={process.env.PUBLIC_URL + "/img/sad.gif"}
-                  alt="Búsqueda sin Resultados"
-                  className="contenedor_notfound_imagen"
-                />
-              </ContenedorNotFound>
-            )}
-          </ContenedorAllVideos>
-        </div>
+        <ThemeProvider theme={{ temaSeleccionado }}>
+          <ContenedorBusqueda>
+            <AmpolletaSelectorTheme
+              theme={temaSeleccionado}
+              handleChangeTheme={handleChangeTheme}
+            />
+            <TituloParagraph>
+              Se ha buscado la palabra:{" "}
+              <span className="destaque">{myParamSearch}</span>
+            </TituloParagraph>
+            <SubTituloParagraph>
+              Esta búsqueda arrojo:{" "}
+              <span className="destaque">{videosFiltrados.length}</span>{" "}
+              resultados
+            </SubTituloParagraph>
+            <ContenedorAllVideos>
+              {videosFiltrados.length > 0 ? (
+                videosFiltrados.map((objeto, index) => {
+                  return (
+                    <ContenedorVideo key={index}>
+                      <CardVideo
+                        video={objeto}
+                        categoriacolor={categorias[0].color}
+                      />
+                    </ContenedorVideo>
+                  );
+                })
+              ) : (
+                <ContenedorNotFound>
+                  <h1 className="contenedor_notfound_titulo">
+                    🥺No hay resultados para esta búsqueda
+                  </h1>
+                  <img
+                    src={process.env.PUBLIC_URL + "/img/sad.gif"}
+                    alt="Búsqueda sin Resultados"
+                    className="contenedor_notfound_imagen"
+                  />
+                </ContenedorNotFound>
+              )}
+            </ContenedorAllVideos>
+          </ContenedorBusqueda>
+        </ThemeProvider>
       </>
     );
   }
