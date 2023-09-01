@@ -23,9 +23,9 @@ const Footer = () => {
               </Link>
             </li>
             <li className="footer__contenedor_paginas_item">
-              <Link to="#" title="Derechos de Autor">
+              <HashLink to={"/copyright/#Copyright"} title="Derechos de Autor">
                 Derechos de Autor
-              </Link>
+              </HashLink>
             </li>
             <li className="footer__contenedor_paginas_item">
               <Link to="#" title="Política de Privacidad">
@@ -59,7 +59,7 @@ const Footer = () => {
         >
           Waldo Hidalgo Oyarce
         </a>{" "}
-        utilizando{" "}
+        utilizando el poder de{" "}
         <span style={{ color: "#8BB7F0" }}>
           React{" ("}
           <img

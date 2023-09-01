@@ -3,6 +3,7 @@ import { BsArrowDownSquare } from "react-icons/bs";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { validarCampoVacio } from "./validaciones";
+import { temaClaro, temaOscuro } from "../UI/temas";
 
 const ContenedorCampoFormulario = styled.div`
   display: flex;
@@ -87,6 +88,19 @@ const ContenedorListaOpciones = styled.div`
   row-gap: 1rem;
   padding-bottom: 1rem;
 `;
+
+const Label = styled.label`
+  text-align: center;
+  display: flex;
+  align-items: center;
+  color: ${(props) => {
+    if (!props.theme?.temaSeleccionado?.textColor) {
+      return temaClaro.textColor;
+    } else {
+      return props.theme.temaSeleccionado.textColor;
+    }
+  }};
+`;
 export const ListaOpciones = (props) => {
   const { titulo, categorias, valor, setCategoria } = props;
 
@@ -97,19 +111,18 @@ export const ListaOpciones = (props) => {
   return (
     <>
       <ContenedorListaOpciones>
-        <label
-          style={{ textAlign: "center", display: "flex", alignItems: "center" }}
-        >
+        <Label htmlFor="DropDown">
           Selecciona alguna {titulo}{" "}
           <BsArrowDownSquare style={{ paddingLeft: "5px" }} />
-        </label>
+        </Label>
         <select
+          id="DropDown"
           style={{
             width: "80%",
             padding: "5px",
             borderRadius: "5px",
             boxSizing: "border-box",
-            border: "2px solid",
+            border: "1px solid",
           }}
           value={valor}
           onChange={handleChangeCategoria}
@@ -117,6 +130,7 @@ export const ListaOpciones = (props) => {
           <option disabled hidden value="Selecciona una opción">
             Selecciona una opción
           </option>
+          {props.nuevoCampo ? <option>{props.nuevoCampo}</option> : false}
           {categorias.map((categoria, index) => {
             return <option key={index}>{categoria}</option>;
           })}

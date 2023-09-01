@@ -119,12 +119,12 @@ const SearchPage = () => {
 
   useEffect(() => {
     if (myParamSearch) {
-      consultaAPI("videos", setVideos).catch(() =>
-        console.log("Error de GET videos de search")
-      );
-      consultaAPI("categorias", setCategorias).catch(() =>
-        console.log("Error de GET categorias de search")
-      );
+      consultaAPI("videos", setVideos).catch(() => {
+        navigate("/no-existe-data");
+      });
+      consultaAPI("categorias", setCategorias).catch(() => {
+        navigate("/no-existe-data");
+      });
     } else {
       navigate("/error-404");
     }

@@ -5,7 +5,8 @@
 .botonLimpiarCategoria,
 .botonEditarCategoria,
 .botonVerVideo,
-.botonVerFullCategoria {
+.botonVerFullCategoria,
+.botonEditDeleteVideo {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -23,7 +24,8 @@
 .botonLimpiarCategoria:hover,
 .botonEditarCategoria:hover,
 .botonVerVideo:hover,
-.botonVerFullCategoria:hover {
+.botonVerFullCategoria:hover,
+.botonEditDeleteVideo:hover {
   background-color: red;
   transform: scale(1.05);
   transition: transform 0.3s ease;

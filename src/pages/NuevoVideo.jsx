@@ -14,14 +14,16 @@ import { consultaAPIYoutube, idVideoYoutube } from "../api/apiyoutube";
 const PaginaNuevoVideo = () => {
   const [categorias, setCategorias] = useState([]);
   const [videos, setVideos] = useState([]);
+  const [emptyVideo, setEmtpyVideo] = useState(false);
+  const [emptyCategoria, setEmtpyCategoria] = useState(false);
 
   useEffect(() => {
-    consultaAPI("categorias", setCategorias).catch((error) =>
-      console.log("Error en GET categorias")
-    );
-    consultaAPI("videos", setVideos).catch(() =>
-      console.log("Error en GET videos")
-    );
+    consultaAPI("categorias", setCategorias).catch(() => {
+      setEmtpyVideo(true);
+    });
+    consultaAPI("videos", setVideos).catch(() => {
+      setEmtpyCategoria(true);
+    });
   }, [categorias, videos]);
 
   const handleDataFormAddCategoría = (dataCategoria) => {
@@ -53,22 +55,28 @@ const PaginaNuevoVideo = () => {
     } else {
       const newObjeto = { id, categoria, descripcion, color };
       addAPIPost("categorias", newObjeto)
-        .then(() =>
+        .then(() => {
           swal(
             "¡ Éxito !",
             "Has creado de manera exitosa una nueva categoría 😀. Ahora crea nuevos videos para esa categoría",
             "success"
-          )
-        )
+          );
+          setEmtpyCategoria(false);
+          consultaAPI("categorias", setCategorias);
+        })
         .catch((error) => console.log(error));
     }
   };
 
   const handleDeleteCategory = (id) => {
     deleteAPIPost("categorias", id)
-      .then(() =>
-        swal("¡ Éxito !", "Has eliminado la categoria seleccionada", "success")
-      )
+      .then(() => {
+        swal("¡ Éxito !", "Has eliminado la categoria seleccionada", "success");
+        consultaAPI("categorias", setCategorias).catch(() => {
+          setEmtpyCategoria(true);
+          setCategorias([]);
+        });
+      })
       .catch(() => console.log("Error en borrar categoria"));
   };
 
@@ -131,6 +139,7 @@ const PaginaNuevoVideo = () => {
             console.log("Ha ocurrido un error en el POST del nuevo video")
           );
           swal("¡ Éxito !", "Se ha guardado el video", "success");
+          setEmtpyVideo(false);
           return;
         } else {
           swal("¡ Error !", "El video no es válido o no está activo.", "error");
@@ -146,7 +155,12 @@ const PaginaNuevoVideo = () => {
       });
   };
 
-  if (categorias.length === 0 || videos.length === 0) {
+  if (
+    (categorias.length === 0 || videos.length === 0) &&
+    !emptyVideo &&
+    (categorias.length === 0 || videos.length === 0) &&
+    !emptyCategoria
+  ) {
     return <LoaderSection />;
   } else {
     return (

@@ -52,7 +52,7 @@ const Acordion = () => {
     },
     {
       id: 4,
-      titulo: "4. ¿Qué lenguajes me recomiendan para empezar?",
+      titulo: "4. ¿Qué lenguajes me recomiendas para empezar?",
       descripcion:
         "Le recomiendo para empezar lenguajes de sintaxis sencilla en los cuales el enfoque no este tanto en la sintaxis sino en aprender a crear utilizando un lenguaje lo más cercano a un lenguaje natural (de alto nivel) y para ese objetivo, el lenguaje que le recomiendo es Python y, en general, cualquier lenguaje del tipo <span style='font-weight: 700;'>SCRIPTING</span>. Si usted es ingeniero no informático y necesita aprender a programar para solucionar problemas en su entorno sin pasar por una enorme curva de aprendizaje, le recomiendo que se enfoque 100% en lenguajes scripting.",
     },

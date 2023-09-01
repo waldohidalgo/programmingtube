@@ -4,15 +4,21 @@ import SeccionesCategorias from "../components/SeccionesCategorias";
 import { consultaAPI } from "../api/apiJsonServer";
 import LoaderSection from "../components/LoaderSection";
 import Acordion from "../components/Acordion";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [dataVideos, setDataVideos] = useState([]);
   const [categorias, setCategorias] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    consultaAPI("videos", setDataVideos);
-    consultaAPI("categorias", setCategorias);
-  }, []);
+    consultaAPI("videos", setDataVideos).catch(() => {
+      navigate("/no-existe-data");
+    });
+    consultaAPI("categorias", setCategorias).catch(() => {
+      navigate("/no-existe-data");
+    });
+  }, [navigate]);
 
   if (dataVideos.length === 0 || categorias.length === 0) {
     return <LoaderSection />;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Boton from "../../Boton";
 import { useNavigate } from "react-router-dom";
 import { temaClaro } from "../../UI/temas";
+import { firstLetterCapital } from "../../../funcionesUtiles";
 
 const ContenedorCard = styled.div`
   box-sizing: border-box;
@@ -37,7 +38,7 @@ const ContenedorCard = styled.div`
       }
       return props.theme.temaSeleccionado.colorBackgroundHoverCard;
     }};
-    color: white;
+
     box-shadow: 0px 0px 21px -5px rgba(255, 255, 255, 1);
     transform: scale(0.95);
     transition: transform 1s ease;
@@ -75,6 +76,15 @@ const TituloCard = styled.h1`
   text-overflow: ellipsis;
 `;
 
+const Categoria = styled.p`
+  margin-bottom: 1rem;
+
+  .realce {
+    font-weight: 700;
+    font-family: "Carter", sans-serif;
+  }
+`;
+
 const CardVideo = ({ video, categoriacolor }) => {
   const { id, titulo, categoria, descripcion, url, imagen } = video;
 
@@ -95,6 +105,10 @@ const CardVideo = ({ video, categoriacolor }) => {
   return (
     <ContenedorCard>
       <TituloCard>{newTitle(titulo)}</TituloCard>
+      <Categoria>
+        Categoría:{" "}
+        <span className="realce">{firstLetterCapital(categoria)}</span>
+      </Categoria>
       <ImageCard src={imagen} alt={titulo} color={categoriacolor} />
       <Boton
         title="Ver Video"

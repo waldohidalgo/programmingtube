@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   position: relative;
   display: inline-block;
+  display: flex;
+  align-items: center;
+  @media screen and (min-width: 862px) {
+  }
 
   .input-container {
     display: none;

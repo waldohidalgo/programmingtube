@@ -95,7 +95,7 @@ const Categorias = () => {
   useEffect(() => {
     const buildPathUrlCategoria = `categorias?categoria=${categoria}`;
     consultaAPI(buildPathUrlCategoria, setCategorias).catch(() => {
-      navigate("/error-404");
+      navigate("no-existe-data");
     });
 
     const buildPathUrlVideos = `videos?categoria=${categoria}`;
