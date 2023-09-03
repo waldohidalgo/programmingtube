@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import AmpolletaSelectorTheme from "../components/Ampolleta";
 import { ThemeProvider } from "styled-components";
 import { temaClaro, temaOscuro } from "../components/UI/temas";
+import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 const Contenedor = styled.section`
   padding-top: 2rem;
@@ -150,13 +152,13 @@ const EditDeleteVideoPage = () => {
     consultaAPI("videos", setVideos).catch(() => {
       navigate("/no-existe-data");
     });
-  }, [videos, navigate]);
+  }, []);
 
   useEffect(() => {
     consultaAPI("categorias", setCategorias).catch(() => {
       navigate("/no-existe-data");
     });
-  }, [navigate]);
+  }, []);
 
   useEffect(() => {
     if (
@@ -178,14 +180,27 @@ const EditDeleteVideoPage = () => {
     }
   }, [categoriaSeleccionada, videos]);
 
+  const handleDelete = (objetoVideo) => {
+    deleteAPIPost("videos", objetoVideo.id);
+    Swal.fire({
+      title: "¡ Éxito !",
+      text: "Se ha eliminado el video",
+      imageUrl: "/img/minions.gif", // URL de la imagen
+      imageAlt: "Success", // Texto alternativo de la imagen
+      showCancelButton: false, // Sin botón de cancelar
+      confirmButtonText: "OK", // Texto del botón OK
+      confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+    });
+    consultaAPI("videos", setVideos).catch(() => navigate("/no-existe-data"));
+  };
+
+  const handleEdit = (objeto) => {
+    navigate(`/editar-video/${objeto.id}`);
+  };
+
   if (videos.length === 0 || categorias.length === 0) {
     return <LoaderSection />;
   } else {
-    const handleDelete = (objetoVideo) => {
-      deleteAPIPost("videos", objetoVideo.id);
-      consultaAPI("videos", setVideos).catch(() => console.log("Error de GET"));
-    };
-
     const handleChangeTheme = (nombreTema) => {
       if (nombreTema === "temaOscuro") {
         setTemaSeleccionado(temaClaro);
@@ -250,7 +265,10 @@ const EditDeleteVideoPage = () => {
                           title="Eliminar"
                         />
                       </div>
-                      <div className="contenedor__botones-edit-delete_boton">
+                      <div
+                        className="contenedor__botones-edit-delete_boton"
+                        onClick={() => handleEdit(objeto)}
+                      >
                         <PiPencilFill
                           className="contenedor__botones-edit-delete_boton-icono"
                           title="Editar"

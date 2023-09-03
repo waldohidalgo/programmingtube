@@ -11,6 +11,7 @@ import SearchPage from "../pages/Search";
 import SeccionCopyright from "../pages/Copyright";
 import EditDeleteVideoPage from "../pages/DeleteEditVideo";
 import NoExisteData from "../pages/NoExisteData";
+import EditarVideo from "../pages/EditarVideo";
 
 const MyWeb = () => {
   return (
@@ -29,6 +30,7 @@ const MyWeb = () => {
               element={<EditDeleteVideoPage />}
             />
             <Route path="no-existe-data" element={<NoExisteData />} />
+            <Route path="editar-video/:id" element={<EditarVideo />} />
             <Route path="*" element={<Error404 />} />
           </Route>
         </Routes>

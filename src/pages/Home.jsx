@@ -18,7 +18,7 @@ const Home = () => {
     consultaAPI("categorias", setCategorias).catch(() => {
       navigate("/no-existe-data");
     });
-  }, [navigate]);
+  }, []);
 
   if (dataVideos.length === 0 || categorias.length === 0) {
     return <LoaderSection />;

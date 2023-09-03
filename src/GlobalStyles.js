@@ -69,6 +69,15 @@ body{
     src: url("/Inter.ttf") format("truetype");
 	
   }
+
+  /*.swal2-icon.swal2-success,.swal2-icon.swal2-warning {
+    display: block;
+    margin: 0 auto;
+	font-size: 15px;
+	margin-top:1rem;
+  }*/
+
+  
  
 
 `;

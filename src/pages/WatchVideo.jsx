@@ -6,6 +6,7 @@ import ContenedorCardVideos from "../components/SeccionesCategorias/ContenedorCa
 import { useEffect, useState } from "react";
 import { consultaAPI } from "../api/apiJsonServer";
 import LoaderSection from "../components/LoaderSection";
+import Error404 from "./Error404";
 
 const Contenedor = styled.div`
   display: flex;
@@ -74,17 +75,16 @@ const ContenedorSlider = styled.div`
 
 const WatchVideo = () => {
   const params = useParams();
-
-  const { id } = params;
-
   const [categorias, setCategorias] = useState([]);
   const [videos, setVideos] = useState([]);
-  const navigate = useNavigate();
+
+  const [id, setId] = useState(0);
 
   useEffect(() => {
     consultaAPI("videos", setVideos);
     consultaAPI("categorias", setCategorias);
-  }, [videos, categorias]);
+    setId(params.id);
+  }, [params]);
 
   if (videos.length === 0 || categorias.length === 0) {
     return (
@@ -152,7 +152,7 @@ const WatchVideo = () => {
         </>
       );
     } catch (error) {
-      navigate("/error-404");
+      return <Error404 />;
     }
   }
 };

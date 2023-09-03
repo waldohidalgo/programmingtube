@@ -12,6 +12,9 @@ const Contenedor = styled.section`
   align-items: center;
   padding-bottom: 3rem;
   position: relative;
+  background-color: ${(props) => {
+    return props.theme.temaSeleccionado.backgroundColor;
+  }};
   .contenedor__titulo {
     display: flex;
     align-items: center;
@@ -45,10 +48,19 @@ const Contenedor = styled.section`
     font-family: "Inter", sans-serif;
     line-height: 1.5rem;
     text-align: justify;
+    color: ${(props) => {
+      return props.theme.temaSeleccionado.textColor;
+    }};
+  }
+  .contenedor__titulo__titulo {
+    text-align: center;
+    color: ${(props) => {
+      return props.theme.temaSeleccionado.textColor;
+    }};
   }
 
   .contenedor__gif {
-    width: 80%;
+    width: 50%;
     border-radius: 30px;
     border: 6px solid red;
     @media screen and (min-width: 550px) {

@@ -53,10 +53,13 @@ const Contenedor = styled.section`
     margin-bottom: 3rem;
   }
   .copyright_gif {
-    width: 50%;
+    width: 80%;
 
     align-self: center;
     border-radius: 50%;
+    @media screen and (min-width: 550px) {
+      width: 20%;
+    }
   }
 `;
 
@@ -69,6 +72,7 @@ const SeccionCopyright = () => {
       setTemaSeleccionado(temaOscuro);
     }
   };
+
   return (
     <>
       <ThemeProvider theme={{ temaSeleccionado }}>

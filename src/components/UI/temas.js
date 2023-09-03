@@ -1,8 +1,8 @@
 export const temaClaro = {
   nombreTema: "temaClaro",
-  backgroundColor: "white",
+  backgroundColor: "#F9F871",
   textColor: "black",
-  backgroundColorCard: "white",
+  backgroundColorCard: "#C4FCEF",
   colorBoxShadow: "rgba(0, 0, 0, 0.75)",
   colorBackgroundHoverCard: "black",
   borderColor: "red",

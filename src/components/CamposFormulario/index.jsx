@@ -21,13 +21,6 @@ const ContenedorCampoFormulario = styled.div`
   }
 `;
 
-const InputFormulario = styled.input`
-  padding: 5px;
-  border-radius: 5px;
-  box-sizing: border-box;
-  width: 100%;
-`;
-
 export const CampoFormulario = (props) => {
   const { type, titulo, setValue, valor } = props;
   const [valid, setValid] = useState(null);

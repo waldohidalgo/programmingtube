@@ -4,18 +4,22 @@ import { useEffect, useState } from "react";
 import {
   addAPIPost,
   consultaAPI,
+  deleteALL,
   deleteAPIPost,
   editAPIPost,
 } from "../api/apiJsonServer";
-import swal from "sweetalert";
+
 import LoaderSection from "../components/LoaderSection";
 import { consultaAPIYoutube, idVideoYoutube } from "../api/apiyoutube";
+import Swal from "sweetalert2";
 
 const PaginaNuevoVideo = () => {
   const [categorias, setCategorias] = useState([]);
   const [videos, setVideos] = useState([]);
   const [emptyVideo, setEmtpyVideo] = useState(false);
   const [emptyCategoria, setEmtpyCategoria] = useState(false);
+  const [idArray, setIdArray] = useState([]);
+  const [categoria, setCategoria] = useState("Selecciona una opción");
 
   useEffect(() => {
     consultaAPI("categorias", setCategorias).catch(() => {
@@ -24,7 +28,27 @@ const PaginaNuevoVideo = () => {
     consultaAPI("videos", setVideos).catch(() => {
       setEmtpyCategoria(true);
     });
-  }, [categorias, videos]);
+  }, []);
+
+  useEffect(() => {
+    setIdArray(videos.map((objeto) => objeto.id));
+  }, [videos]);
+
+  useEffect(() => {
+    if (categorias.length === 0 && idArray.length > 0) {
+      idArray.forEach((id) => {
+        deleteAPIPost("videos", id).catch(() => console.log("errreeeror"));
+      });
+      setIdArray([]);
+      setCategoria("Selecciona una opción");
+      setEmtpyCategoria(true);
+      setEmtpyVideo(true);
+    }
+    if (categorias.length === 0 && idArray.length === 0) {
+      setEmtpyCategoria(true);
+      setEmtpyVideo(true);
+    }
+  }, [categorias, idArray]);
 
   const handleDataFormAddCategoría = (dataCategoria) => {
     const {
@@ -39,28 +63,61 @@ const PaginaNuevoVideo = () => {
         .map((objeto) => objeto.categoria.toLowerCase())
         .includes(categoria.toLowerCase())
     ) {
-      swal("¡ Advertencia !", "Nombre de Categoria ya existe", "warning");
+      Swal.fire({
+        title: "¡ Advertencia !",
+        text: "Nombre de Categoria ya existe",
+        imageUrl: "/img/warning.gif", // URL de la imagen
+        imageAlt: "Warning", // Texto alternativo de la imagen
+        showCancelButton: false, // Sin botón de cancelar
+        confirmButtonText: "OK", // Texto del botón OK
+        confirmButtonColor: "#FFA500", // Color verde para el botón OK
+      });
     } else if (
       categorias
         .map((objeto) => objeto.descripcion.toLowerCase())
         .includes(descripcion.toLowerCase())
     ) {
-      swal("¡ Advertencia !", "Descripción de Categoría ya existe", "warning");
+      Swal.fire({
+        title: "¡ Advertencia !",
+        text: "Descripción de Categoría ya existe",
+        imageUrl: "/img/warning.gif", // URL de la imagen
+        imageAlt: "Warning", // Texto alternativo de la imagen
+        showCancelButton: false, // Sin botón de cancelar
+        confirmButtonText: "OK", // Texto del botón OK
+        confirmButtonColor: "#FFA500", // Color verde para el botón OK
+      });
     } else if (
       categorias
         .map((objeto) => objeto.color.toLowerCase())
         .includes(color.toLowerCase())
     ) {
-      swal("¡ Advertencia !", "Color de Categoría ya existe", "warning");
+      Swal.fire({
+        title: "¡ Advertencia !",
+        text: "Color de Categoría ya existe",
+        imageUrl: "/img/warning.gif", // URL de la imagen
+        imageAlt: "Warning", // Texto alternativo de la imagen
+        showCancelButton: false, // Sin botón de cancelar
+        confirmButtonText: "OK", // Texto del botón OK
+        confirmButtonColor: "#FFA500", // Color verde para el botón OK
+      });
     } else {
-      const newObjeto = { id, categoria, descripcion, color };
+      const newObjeto = {
+        id,
+        categoria: categoria.toLowerCase(),
+        descripcion,
+        color,
+      };
       addAPIPost("categorias", newObjeto)
         .then(() => {
-          swal(
-            "¡ Éxito !",
-            "Has creado de manera exitosa una nueva categoría 😀. Ahora crea nuevos videos para esa categoría",
-            "success"
-          );
+          Swal.fire({
+            title: "¡ Éxito !",
+            text: "Has creado de manera exitosa una nueva categoría 😀. Ahora crea nuevos videos para esa categoría",
+            imageUrl: "/img/minions.gif", // URL de la imagen
+            imageAlt: "Success", // Texto alternativo de la imagen
+            showCancelButton: false, // Sin botón de cancelar
+            confirmButtonText: "OK", // Texto del botón OK
+            confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+          });
           setEmtpyCategoria(false);
           consultaAPI("categorias", setCategorias);
         })
@@ -71,7 +128,15 @@ const PaginaNuevoVideo = () => {
   const handleDeleteCategory = (id) => {
     deleteAPIPost("categorias", id)
       .then(() => {
-        swal("¡ Éxito !", "Has eliminado la categoria seleccionada", "success");
+        Swal.fire({
+          title: "¡ Éxito !",
+          text: "Has eliminado la categoria seleccionada",
+          imageUrl: "/img/minions.gif", // URL de la imagen
+          imageAlt: "Success", // Texto alternativo de la imagen
+          showCancelButton: false, // Sin botón de cancelar
+          confirmButtonText: "OK", // Texto del botón OK
+          confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+        });
         consultaAPI("categorias", setCategorias).catch(() => {
           setEmtpyCategoria(true);
           setCategorias([]);
@@ -84,32 +149,44 @@ const PaginaNuevoVideo = () => {
     const { id, categoria, descripcion, color } = objeto;
 
     if (categoria === "" && descripcion === "") {
-      swal(
-        "¡ Advertencia !",
-        "No puedes crear categorías sin nombre ni descripción",
-        "warning"
-      );
+      Swal.fire({
+        title: "¡ Advertencia !",
+        text: "No puedes crear categorías sin nombre ni descripción",
+        imageUrl: "/img/warning.gif", // URL de la imagen
+        imageAlt: "Warning", // Texto alternativo de la imagen
+        showCancelButton: false, // Sin botón de cancelar
+        confirmButtonText: "OK", // Texto del botón OK
+        confirmButtonColor: "#FFA500", // Color verde para el botón OK
+      });
       return;
     }
     if (!categorias.map((objetoCategoria) => objetoCategoria.id).includes(id)) {
       //en este código le estoy pasando el id ===0
-      swal(
-        "¡ Advertencia !",
-        "La Categoría a editar no existe. Para editar categorias, selecciona alguna categoría de la tabla haciendo click en editar y a continuación editar los campos mostrados en el formulario. Finalizar haciendo click en el botón Editar Categoría.",
-        "warning"
-      );
+      Swal.fire({
+        title: "¡ Advertencia !",
+        text: "La Categoría a editar no existe. Para editar categorias, selecciona alguna categoría de la tabla haciendo click en editar y a continuación editar los campos mostrados en el formulario. Finalizar haciendo click en el botón Editar Categoría.",
+        imageUrl: "/img/warning.gif", // URL de la imagen
+        imageAlt: "Warning", // Texto alternativo de la imagen
+        showCancelButton: false, // Sin botón de cancelar
+        confirmButtonText: "OK", // Texto del botón OK
+        confirmButtonColor: "#FFA500", // Color verde para el botón OK
+      });
     } else {
       editAPIPost("categorias", objeto)
         .then(() => {
-          swal(
-            "¡ Éxito !",
-            `Felicidades has editado la categoría ${
+          Swal.fire({
+            title: "¡ Éxito !",
+            text: `Felicidades has editado la categoría ${
               categorias.filter(
                 (objetoCategoria) => objetoCategoria.id === id
               )[0].categoria
             }`,
-            "success"
-          );
+            imageUrl: "/img/minions.gif", // URL de la imagen
+            imageAlt: "Success", // Texto alternativo de la imagen
+            showCancelButton: false, // Sin botón de cancelar
+            confirmButtonText: "OK", // Texto del botón OK
+            confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+          });
         })
         .catch(() => console.log("Ha ocurrido un error en el PUT"));
 
@@ -127,7 +204,7 @@ const PaginaNuevoVideo = () => {
           const identificadorVideoYoutube = idVideoYoutube(url);
 
           const nuevoVideo = {
-            id: videos.length + 1,
+            id: idArray[idArray.length - 1] + 1,
             titulo: nombreVideo,
             categoria: categoria.toLowerCase(),
             descripcion: descripcionVideo,
@@ -138,27 +215,49 @@ const PaginaNuevoVideo = () => {
           addAPIPost("videos", nuevoVideo).catch(() =>
             console.log("Ha ocurrido un error en el POST del nuevo video")
           );
-          swal("¡ Éxito !", "Se ha guardado el video", "success");
+          Swal.fire({
+            title: "¡ Éxito !",
+            text: "Se ha guardado el video",
+            imageUrl: "/img/minions.gif", // URL de la imagen
+            imageAlt: "Success", // Texto alternativo de la imagen
+            showCancelButton: false, // Sin botón de cancelar
+            confirmButtonText: "OK", // Texto del botón OK
+            confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+          });
           setEmtpyVideo(false);
           return;
         } else {
-          swal("¡ Error !", "El video no es válido o no está activo.", "error");
+          Swal.fire({
+            title: "¡ Error !",
+            text: "El video no es válido o no está activo",
+            imageUrl: "/img/car-toy.gif", // URL de la imagen
+            imageAlt: "Error", // Texto alternativo de la imagen
+            showCancelButton: false, // Sin botón de cancelar
+            confirmButtonText: "OK", // Texto del botón OK
+            confirmButtonColor: "#FF0000", // Color verde para el botón OK
+          });
           return;
         }
       })
       .catch((error) => {
-        swal(
-          "¡ Error !",
-          "La URL ingresada no corresponde a video o no es un video válido.",
-          "error"
-        );
+        Swal.fire({
+          title: "¡ Error !",
+          text: "La URL ingresada no corresponde a video o no es un video válido.",
+          imageUrl: "/img/car-toy.gif", // URL de la imagen
+          imageAlt: "Error", // Texto alternativo de la imagen
+          showCancelButton: false, // Sin botón de cancelar
+          confirmButtonText: "OK", // Texto del botón OK
+          confirmButtonColor: "#FF0000", // Color verde para el botón OK
+        });
       });
+
+    setIdArray([...idArray, idArray[idArray.length - 1] + 1]);
   };
 
   if (
-    (categorias.length === 0 || videos.length === 0) &&
+    (categorias.length === 0 || idArray.length === 0) &&
     !emptyVideo &&
-    (categorias.length === 0 || videos.length === 0) &&
+    (categorias.length === 0 || idArray.length === 0) &&
     !emptyCategoria
   ) {
     return <LoaderSection />;
@@ -171,6 +270,8 @@ const PaginaNuevoVideo = () => {
           handleDataFormAddCategoría={handleDataFormAddCategoría}
           handleDeleteCategory={handleDeleteCategory}
           handleEditCategoryForm={handleEditCategoryForm}
+          categoria={categoria}
+          setCategoria={setCategoria}
         />
       </>
     );

@@ -24,7 +24,7 @@ const FormularioAddVideo = styled.form`
   background-color: white;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  width: 80%;
+  width: 90%;
   border-radius: 15px;
   box-shadow: 7px 8px 5px -1px rgba(0, 0, 0, 0.62);
   padding-left: 5%;
@@ -143,10 +143,11 @@ export const FormularioVideoCategoria = ({
   handleDataFormAddCategoría,
   handleDeleteCategory,
   handleEditCategoryForm,
+  categoria,
+  setCategoria,
 }) => {
   const [nombreVideo, setNombreVideo] = useState("");
   const [url, setURL] = useState("");
-  const [categoria, setCategoria] = useState("Selecciona una opción");
   const [descripcionVideo, setDescripcionVideo] = useState("");
 
   const [idCategoria, setIdCategoria] = useState(0);

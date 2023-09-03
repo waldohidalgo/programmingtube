@@ -2,15 +2,21 @@ import axios from "axios";
 
 const urlAPI = "http://localhost:3001";
 
-export const consultaAPI = async (path, setFunction) => {
+export const consultaAPI = (path, setFunction) => {
   const urlAPIConsulta = `${urlAPI}/${path}`;
 
-  const response = await axios.get(urlAPIConsulta);
-  if (response.data.length === 0) {
-    throw new Error("Error de Get");
-  } else {
-    setFunction(response.data);
-  }
+  return axios
+    .get(urlAPIConsulta)
+    .then((response) => {
+      if (response.data.length === 0) {
+        throw new Error("Error de Get");
+      } else {
+        setFunction(response.data);
+      }
+    })
+    .catch((error) => {
+      throw new Error("Error de Get");
+    });
 };
 
 export const addAPIPost = (path, objeto) => {
