@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const urlAPI = "http://localhost:3001";
+const urlAPI = "https://programmingtubeapi.onrender.com";
 
 export const consultaAPI = (path, setFunction) => {
   const urlAPIConsulta = `${urlAPI}/${path}`;
