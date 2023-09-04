@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const urlAPI = "https://programmingtubeapi.onrender.com";
+const urlAPI = "https://64f623ae2b07270f705e33f4.mockapi.io";
+
+/**/
 
 export const consultaAPI = (path, setFunction) => {
   const urlAPIConsulta = `${urlAPI}/${path}`;

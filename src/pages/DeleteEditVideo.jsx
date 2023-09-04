@@ -181,7 +181,9 @@ const EditDeleteVideoPage = () => {
   }, [categoriaSeleccionada, videos]);
 
   const handleDelete = (objetoVideo) => {
-    deleteAPIPost("videos", objetoVideo.id);
+    deleteAPIPost("videos", objetoVideo.id).catch(() =>
+      console.log("Ha ocurrido un error en la eliminación")
+    );
     Swal.fire({
       title: "¡ Éxito !",
       text: "Se ha eliminado el video",
