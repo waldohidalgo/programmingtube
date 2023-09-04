@@ -21,10 +21,13 @@ jobs:
           REACT_APP_YOUTUBE_API_KEY: ${{ secrets.REACT_APP_YOUTUBE_API_KEY }}
 
       - name: Configure Git remote with HTTPS
-        run: git remote set-url origin https://github.com/tu-usuario/tu-repositorio.git
+        run: git remote set-url origin https://github.com/Waldo-analista/programmingtube.git
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          deploy_key: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          branch: gh-pages
+          folder: build
+
+      - name: Clean up
+        run: rm -rf build
