@@ -140,8 +140,7 @@ const PaginaNuevoVideo = () => {
           confirmButtonColor: "#4CAF50", // Color verde para el botón OK
         });
         consultaAPI("categorias", setCategorias).catch(() => {
-          setEmtpyCategoria(true);
-          setCategorias([]);
+          console.log("Ha ocurrido un error al setear categorias");
         });
       })
       .catch(() => console.log("Error en borrar categoria"));
@@ -193,7 +192,7 @@ const PaginaNuevoVideo = () => {
         .catch(() => console.log("Ha ocurrido un error en el PUT"));
 
       consultaAPI("categorias", setCategorias).catch(() => {
-        setEmtpyVideo(true);
+        console.log("Ha ocurrido un error al setear las categorias");
       });
 
       handleCleanFormularioCategoria();
@@ -231,7 +230,6 @@ const PaginaNuevoVideo = () => {
             confirmButtonColor: "#4CAF50", // Color verde para el botón OK
           });
           setEmtpyVideo(false);
-          return;
         } else {
           Swal.fire({
             title: "¡ Error !",
@@ -242,7 +240,6 @@ const PaginaNuevoVideo = () => {
             confirmButtonText: "OK", // Texto del botón OK
             confirmButtonColor: "#FF0000", // Color verde para el botón OK
           });
-          return;
         }
       })
       .catch((error) => {
