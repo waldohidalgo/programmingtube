@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import {
   addAPIPost,
   consultaAPI,
-  deleteALL,
   deleteAPIPost,
   editAPIPost,
 } from "../api/apiJsonServer";
@@ -108,19 +107,19 @@ const PaginaNuevoVideo = () => {
         color,
       };
       addAPIPost("categorias", newObjeto)
-        .then(() => {
-          Swal.fire({
-            title: "¡ Éxito !",
-            text: "Has creado de manera exitosa una nueva categoría 😀. Ahora crea nuevos videos para esa categoría",
-            imageUrl: "/img/minions.gif", // URL de la imagen
-            imageAlt: "Success", // Texto alternativo de la imagen
-            showCancelButton: false, // Sin botón de cancelar
-            confirmButtonText: "OK", // Texto del botón OK
-            confirmButtonColor: "#4CAF50", // Color verde para el botón OK
-          });
-          setEmtpyCategoria(false);
-        })
+        .then(() => {})
         .catch((error) => console.log(error));
+
+      Swal.fire({
+        title: "¡ Éxito !",
+        text: "Has creado de manera exitosa una nueva categoría 😀. Ahora crea nuevos videos para esa categoría",
+        imageUrl: "/img/minions.gif", // URL de la imagen
+        imageAlt: "Success", // Texto alternativo de la imagen
+        showCancelButton: false, // Sin botón de cancelar
+        confirmButtonText: "OK", // Texto del botón OK
+        confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+      });
+      setEmtpyCategoria(false);
 
       consultaAPI("categorias", setCategorias).catch(() => {
         console.log("Error de GET de Agregar Categoria");
@@ -130,21 +129,20 @@ const PaginaNuevoVideo = () => {
 
   const handleDeleteCategory = (id) => {
     deleteAPIPost("categorias", id)
-      .then(() => {
-        Swal.fire({
-          title: "¡ Éxito !",
-          text: "Has eliminado la categoria seleccionada",
-          imageUrl: "/img/minions.gif", // URL de la imagen
-          imageAlt: "Success", // Texto alternativo de la imagen
-          showCancelButton: false, // Sin botón de cancelar
-          confirmButtonText: "OK", // Texto del botón OK
-          confirmButtonColor: "#4CAF50", // Color verde para el botón OK
-        });
-        consultaAPI("categorias", setCategorias).catch(() => {
-          console.log("Ha ocurrido un error al setear categorias");
-        });
-      })
+      .then(() => {})
       .catch(() => console.log("Error en borrar categoria"));
+    Swal.fire({
+      title: "¡ Éxito !",
+      text: "Has eliminado la categoria seleccionada",
+      imageUrl: "/img/minions.gif", // URL de la imagen
+      imageAlt: "Success", // Texto alternativo de la imagen
+      showCancelButton: false, // Sin botón de cancelar
+      confirmButtonText: "OK", // Texto del botón OK
+      confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+    });
+    consultaAPI("categorias", setCategorias).catch(() => {
+      console.log("Ha ocurrido un error al setear categorias");
+    });
   };
 
   const handleEditCategoryForm = (objeto, handleCleanFormularioCategoria) => {
@@ -175,22 +173,21 @@ const PaginaNuevoVideo = () => {
       });
     } else {
       editAPIPost("categorias", objeto)
-        .then(() => {
-          Swal.fire({
-            title: "¡ Éxito !",
-            text: `Felicidades has editado la categoría ${
-              categorias.filter(
-                (objetoCategoria) => objetoCategoria.id === id
-              )[0].categoria
-            }`,
-            imageUrl: "/img/minions.gif", // URL de la imagen
-            imageAlt: "Success", // Texto alternativo de la imagen
-            showCancelButton: false, // Sin botón de cancelar
-            confirmButtonText: "OK", // Texto del botón OK
-            confirmButtonColor: "#4CAF50", // Color verde para el botón OK
-          });
-        })
+        .then(() => {})
         .catch(() => console.log("Ha ocurrido un error en el PUT"));
+
+      Swal.fire({
+        title: "¡ Éxito !",
+        text: `Felicidades has editado la categoría ${
+          categorias.filter((objetoCategoria) => objetoCategoria.id === id)[0]
+            .categoria
+        }`,
+        imageUrl: "/img/minions.gif", // URL de la imagen
+        imageAlt: "Success", // Texto alternativo de la imagen
+        showCancelButton: false, // Sin botón de cancelar
+        confirmButtonText: "OK", // Texto del botón OK
+        confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+      });
 
       consultaAPI("categorias", setCategorias).catch(() => {
         console.log("Ha ocurrido un error al setear las categorias");
