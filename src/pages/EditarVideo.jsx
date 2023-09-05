@@ -161,6 +161,11 @@ const EditarVideo = () => {
               confirmButtonColor: "#4CAF50", // Color verde para el botón OK
             });
 
+            consultaAPI("videos", setVideos).catch(() => {
+              setVideos([]);
+              setEmtpyVideo(true);
+            });
+
             return;
           } else {
             Swal.fire({

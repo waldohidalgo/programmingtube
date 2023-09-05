@@ -119,7 +119,9 @@ const PaginaNuevoVideo = () => {
             confirmButtonColor: "#4CAF50", // Color verde para el botón OK
           });
           setEmtpyCategoria(false);
-          consultaAPI("categorias", setCategorias);
+          consultaAPI("categorias", setCategorias).catch(() => {
+            console.log("Error de GET de Agregar Categoria");
+          });
         })
         .catch((error) => console.log(error));
     }
@@ -189,6 +191,10 @@ const PaginaNuevoVideo = () => {
           });
         })
         .catch(() => console.log("Ha ocurrido un error en el PUT"));
+
+      consultaAPI("categorias", setCategorias).catch(() => {
+        setEmtpyVideo(true);
+      });
 
       handleCleanFormularioCategoria();
     }
