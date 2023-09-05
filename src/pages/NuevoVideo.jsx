@@ -119,11 +119,12 @@ const PaginaNuevoVideo = () => {
             confirmButtonColor: "#4CAF50", // Color verde para el botón OK
           });
           setEmtpyCategoria(false);
-          consultaAPI("categorias", setCategorias).catch(() => {
-            console.log("Error de GET de Agregar Categoria");
-          });
         })
         .catch((error) => console.log(error));
+
+      consultaAPI("categorias", setCategorias).catch(() => {
+        console.log("Error de GET de Agregar Categoria");
+      });
     }
   };
 
