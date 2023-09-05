@@ -108,7 +108,6 @@ const ContenedorVideo = styled.div`
     position: absolute;
     top: 15px;
     right: 15px;
-
     z-index: 1;
 
     .contenedor__botones-edit-delete_boton {
