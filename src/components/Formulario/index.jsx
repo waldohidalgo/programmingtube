@@ -170,12 +170,6 @@ export const FormularioVideoCategoria = ({
 
   const handleSubmitFormularioCategoria = (evento) => {
     evento.preventDefault();
-    console.log({
-      id: categoriasArray.length + 1,
-      nombreCategoria,
-      descripcionCategoria,
-      colorCategoria,
-    });
     handleDataFormAddCategoría({
       id: categoriasArray.length + 1,
       nombreCategoria,

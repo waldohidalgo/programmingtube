@@ -11,6 +11,7 @@ import {
 import LoaderSection from "../components/LoaderSection";
 import { consultaAPIYoutube, idVideoYoutube } from "../api/apiyoutube";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const PaginaNuevoVideo = () => {
   const [categorias, setCategorias] = useState([]);
@@ -20,6 +21,7 @@ const PaginaNuevoVideo = () => {
   const [idArray, setIdArray] = useState([]);
   const [categoria, setCategoria] = useState("Selecciona una opción");
   const [cambioCategoria, setCambioCategoria] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     consultaAPI("categorias", setCategorias).catch(() => {
@@ -228,6 +230,22 @@ const PaginaNuevoVideo = () => {
             showCancelButton: false, // Sin botón de cancelar
             confirmButtonText: "OK", // Texto del botón OK
             confirmButtonColor: "#4CAF50", // Color verde para el botón OK
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "¿Deseas seguir agregando videos?",
+                imageUrl: "/img/question.gif",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: "Sí😁",
+                confirmButtonColor: "#4CAF50",
+                denyButtonText: `No, quiero ir a Inicio`,
+              }).then((result) => {
+                if (result.isDenied) {
+                  navigate("/");
+                }
+              });
+            }
           });
           setEmtpyVideo(false);
         } else {
