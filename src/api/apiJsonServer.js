@@ -13,7 +13,7 @@ export const consultaAPI = (path, setFunction) => {
       if (response.data.length === 0) {
         throw new Error("Error de Get");
       } else {
-        setFunction(response.data);
+        setFunction([...response.data]);
       }
     })
     .catch((error) => {

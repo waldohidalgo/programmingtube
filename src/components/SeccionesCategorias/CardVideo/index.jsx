@@ -38,6 +38,7 @@ const ContenedorCard = styled.div`
       }
       return props.theme.temaSeleccionado.colorBackgroundHoverCard;
     }};
+    color: white;
 
     box-shadow: 0px 0px 21px -5px rgba(255, 255, 255, 1);
     transform: scale(0.95);

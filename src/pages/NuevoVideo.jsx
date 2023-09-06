@@ -19,6 +19,7 @@ const PaginaNuevoVideo = () => {
   const [emptyCategoria, setEmtpyCategoria] = useState(false);
   const [idArray, setIdArray] = useState([]);
   const [categoria, setCategoria] = useState("Selecciona una opción");
+  const [cambioCategoria, setCambioCategoria] = useState(false);
 
   useEffect(() => {
     consultaAPI("categorias", setCategorias).catch(() => {
@@ -30,13 +31,21 @@ const PaginaNuevoVideo = () => {
   }, []);
 
   useEffect(() => {
+    consultaAPI("categorias", setCategorias)
+      .then(() => {})
+      .catch(() => {
+        console.log("Error de GET de Agregar Categoria");
+      });
+  }, [cambioCategoria]);
+
+  useEffect(() => {
     setIdArray(videos.map((objeto) => objeto.id));
   }, [videos]);
 
   useEffect(() => {
     if (categorias.length === 0 && idArray.length > 0) {
       idArray.forEach((id) => {
-        deleteAPIPost("videos", id).catch(() => console.log("errreeeror"));
+        deleteAPIPost("videos", id).catch(() => console.log("error de delete"));
       });
       setIdArray([]);
       setCategoria("Selecciona una opción");
@@ -120,10 +129,7 @@ const PaginaNuevoVideo = () => {
         confirmButtonColor: "#4CAF50", // Color verde para el botón OK
       });
       setEmtpyCategoria(false);
-
-      consultaAPI("categorias", setCategorias).catch(() => {
-        console.log("Error de GET de Agregar Categoria");
-      });
+      setCambioCategoria(!cambioCategoria);
     }
   };
 
@@ -140,9 +146,7 @@ const PaginaNuevoVideo = () => {
       confirmButtonText: "OK", // Texto del botón OK
       confirmButtonColor: "#4CAF50", // Color verde para el botón OK
     });
-    consultaAPI("categorias", setCategorias).catch(() => {
-      console.log("Ha ocurrido un error al setear categorias");
-    });
+    setCambioCategoria(!cambioCategoria);
   };
 
   const handleEditCategoryForm = (objeto, handleCleanFormularioCategoria) => {
@@ -189,9 +193,7 @@ const PaginaNuevoVideo = () => {
         confirmButtonColor: "#4CAF50", // Color verde para el botón OK
       });
 
-      consultaAPI("categorias", setCategorias).catch(() => {
-        console.log("Ha ocurrido un error al setear las categorias");
-      });
+      setCambioCategoria(!cambioCategoria);
 
       handleCleanFormularioCategoria();
     }

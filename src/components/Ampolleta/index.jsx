@@ -34,7 +34,7 @@ const AmpolletaSelectorTheme = (props) => {
             className="imagen"
             src="https://img.icons8.com/color/48/smiling-sun.png"
             alt="smiling-sun"
-            title="Cambiar a tema claro"
+            title="Cambiar a tema oscuro"
           />
         ) : (
           <img
