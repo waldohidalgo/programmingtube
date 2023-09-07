@@ -60,6 +60,10 @@ A continuación muestro la alerta de éxito cuando creo un nuevo video:
 
 ![Alerta de Éxito al Crear Video](./ScreenShots/ExitoCreacionVideo.png)
 
+Siguiendo el consejo de Christian Velasco he agregado una sweetalert la cual presenta las opciones de si se desea seguir agregando videos o si se desea ser redirigido a la página de inicio:
+
+![Alerta de Consulta Post Creación de Video](./ScreenShots/AlertaPostCrearVideo.png)
+
 A continuación muestro la alerta de éxito cuando creo una nueva categoría:
 
 ![Alerta de Éxito al Crear Video](./ScreenShots/ExitoNuevaCategoria.png)
