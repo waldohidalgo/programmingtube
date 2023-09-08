@@ -171,3 +171,7 @@ He creado una página que muestra los derechos de autor los cuales pertenecen a 
 Por último, muestro el componente Acordion expandido el cual he creado desde cero en base a diseños que encontré en la web:
 
 ![Acordion Expandido](./ScreenShots/AcordionExpandido.png)
+
+# Insignia de premiación al crear este proyecto y superar el desafío
+
+![Insignia React](./ScreenShots/insignia.png)
