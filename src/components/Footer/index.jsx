@@ -116,7 +116,7 @@ const Footer = () => {
           </a>
           <a
             className="footer_iconos--redes"
-            href="https://github.com/Waldo-analista/"
+            href="https://github.com/waldohidalgo/"
             title="GitHub de Waldo"
             target="_blank"
             rel="noreferrer"
