@@ -1,6 +1,6 @@
 import Home from "../pages/Home";
 import Error404 from "../pages/Error404";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes, HashRouter } from "react-router-dom";
 import DefaultPage from "../pages/DefaultPage";
 
 import PaginaNuevoVideo from "../pages/NuevoVideo";
@@ -16,7 +16,7 @@ import EditarVideo from "../pages/EditarVideo";
 const MyWeb = () => {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<DefaultPage />}>
             <Route index element={<Home />} />
@@ -34,7 +34,7 @@ const MyWeb = () => {
             <Route path="*" element={<Error404 />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 };
