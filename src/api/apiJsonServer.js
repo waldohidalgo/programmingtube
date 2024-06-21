@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const urlAPI = "https://aggressive-yak-beret.cyclic.cloud";
-
-/*https://aggressive-yak-beret.cyclic.cloud*/
+const urlAPI = "https://data-ap-iprogramming-tube.vercel.app";
 
 export const consultaAPI = (path, setFunction) => {
   const urlAPIConsulta = `${urlAPI}/${path}`;
