@@ -44,6 +44,7 @@ const HeaderContenedor = styled.header`
 const HeaderLogo = styled.img`
   width: 100%;
   max-width: 499px;
+  min-height: 100px;
 `;
 
 const Header = () => {

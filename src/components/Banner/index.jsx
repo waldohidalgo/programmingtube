@@ -14,13 +14,15 @@ const Section = styled.section`
   width: 100%;
   background-repeat: no-repeat;
   background-position-x: center;
-  background-attachment: fixed;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
+
+  @media screen and (min-width: 550px) {
+    background-attachment: fixed;
+  }
 `;
 
 const ContenedorThumnails = styled.div`
